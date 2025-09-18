@@ -2,13 +2,29 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
 import { Menu, Mountain, X } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 export default function Navbar() {
   const { isAuthenticated, user, signOut } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Close menu on escape and lock body scroll when menu is open
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    // lock body scroll when menu open
+    document.body.classList.toggle("overflow-hidden", isMenuOpen);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isMenuOpen]);
 
   const handleAuthAction = () => {
     if (isAuthenticated) {
@@ -67,6 +83,9 @@ export default function Navbar() {
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white hover:bg-white/10"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -80,22 +99,42 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-black/50 backdrop-blur-md rounded-lg mt-2 p-4"
+            id="mobile-menu"
           >
             <div className="flex flex-col space-y-4">
-              <a href="#home" className="text-white hover:text-orange-300 transition-colors">
+              <a
+                href="#home"
+                className="text-white hover:text-orange-300 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Home
               </a>
-              <a href="#treks" className="text-white hover:text-orange-300 transition-colors">
+              <a
+                href="#treks"
+                className="text-white hover:text-orange-300 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Treks
               </a>
-              <a href="#about" className="text-white hover:text-orange-300 transition-colors">
+              <a
+                href="#about"
+                className="text-white hover:text-orange-300 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 About
               </a>
-              <a href="#contact" className="text-white hover:text-orange-300 transition-colors">
+              <a
+                href="#contact"
+                className="text-white hover:text-orange-300 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 Contact
               </a>
               <Button
-                onClick={handleAuthAction}
+                onClick={() => {
+                  handleAuthAction();
+                  setIsMenuOpen(false);
+                }}
                 variant="outline"
                 className="bg-white/10 border-white/30 text-white hover:bg-white/20 w-full"
               >
