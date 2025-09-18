@@ -25,7 +25,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold mb-6 tracking-tight"
+          className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tight"
         >
           Explore the
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
@@ -37,7 +37,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto"
+          className="text-lg md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto"
         >
           Discover the true heart of the Himalayas with unforgettable trekking adventures through pristine landscapes and ancient cultures.
         </motion.p>

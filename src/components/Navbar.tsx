@@ -32,7 +32,7 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 bg-transparent"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -42,12 +42,12 @@ export default function Navbar() {
             <img
               src="https://harmless-tapir-303.convex.cloud/api/storage/3e4ba243-1be0-424c-a7c9-04f4caccbfef"
               alt="Off Beat Himalaya Logo"
-              className="h-8 w-8 object-contain"
+              className="h-7 w-7 sm:h-8 sm:w-8 object-contain"
             />
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             <a href="#home" className="text-white hover:text-orange-300 transition-colors">
               Home
             </a>

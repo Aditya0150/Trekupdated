@@ -73,7 +73,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-b from-gray-900 to-black text-white relative overflow-hidden"
+      className="py-16 md:py-20 bg-gradient-to-b from-gray-900 to-black text-white relative overflow-hidden"
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
@@ -91,20 +91,20 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4">
             Plan Your
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
               {" "}Adventure
             </span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
             Ready to embark on your Himalayan journey? Get in touch and let's plan your perfect adventure.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -114,15 +114,15 @@ export default function ContactSection() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
-              <p className="text-gray-300 mb-8">
+              <h3 className="text-xl sm:text-2xl font-bold mb-5 md:mb-6">Get in Touch</h3>
+              <p className="text-gray-300 mb-6 md:mb-8 text-sm sm:text-base">
                 We're here to help you plan your Himalayan adventure. Reach out to us 
                 for personalized trek recommendations, group bookings, or any questions 
                 about our expeditions.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
               {contactInfo.map((info, index) => (
                 <motion.a
                   key={index}
@@ -143,8 +143,8 @@ export default function ContactSection() {
                           <info.icon className="h-5 w-5 text-white" />
                         </div>
                         <div>
-                          <div className="font-medium text-white">{info.label}</div>
-                          <div className="text-sm text-gray-300">{info.value}</div>
+                          <div className="font-medium text-white text-sm sm:text-base">{info.label}</div>
+                          <div className="text-xs sm:text-sm text-gray-300">{info.value}</div>
                         </div>
                       </div>
                     </CardContent>
@@ -162,11 +162,11 @@ export default function ContactSection() {
             viewport={{ once: true }}
           >
             <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-bold mb-6 text-white">Send us a Message</h3>
+              <CardContent className="p-5 md:p-6">
+                <h3 className="text-xl sm:text-2xl font-bold mb-5 md:mb-6 text-white">Send us a Message</h3>
                 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                     <div>
                       <Label htmlFor="contact-name" className="text-white">Name *</Label>
                       <Input
@@ -214,7 +214,7 @@ export default function ContactSection() {
                       onChange={(e) => handleInputChange("message", e.target.value)}
                       required
                       disabled={isLoading}
-                      className="bg-white/10 border-white/30 text-white placeholder:text-gray-400 min-h-[120px]"
+                      className="bg-white/10 border-white/30 text-white placeholder:text-gray-400 min-h-[110px] md:min-h-[120px]"
                       placeholder="Tell us about your dream adventure..."
                     />
                   </div>

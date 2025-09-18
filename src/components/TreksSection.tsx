@@ -26,19 +26,19 @@ export default function TreksSection() {
   }
 
   return (
-    <section id="treks" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="treks" className="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4">
             Popular <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">Treks</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Embark on extraordinary journeys through the world's most spectacular mountain landscapes
           </p>
         </motion.div>

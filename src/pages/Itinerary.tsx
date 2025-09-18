@@ -37,7 +37,7 @@ export default function ItineraryPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
         <div className="flex items-center justify-between mb-6">
           <Button variant="outline" onClick={() => navigate(-1)}>
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -54,18 +54,18 @@ export default function ItineraryPage() {
             <img
               src={trek.image}
               alt={trek.name}
-              className="w-full h-72 object-cover"
+              className="w-full h-56 md:h-72 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             <div className="absolute bottom-4 left-4">
-              <h1 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
                 {trek.name} — Itinerary
               </h1>
             </div>
           </div>
         </motion.div>
 
-        <div className="mt-8 grid gap-4">
+        <div className="mt-6 md:mt-8 grid gap-4">
           {(itinerary?.days ?? []).map((day) => (
             <motion.div
               key={day.dayNumber}
@@ -80,7 +80,7 @@ export default function ItineraryPage() {
                       {day.dayNumber}
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold">{day.title}</h3>
+                      <h3 className="text-base sm:text-lg font-semibold">{day.title}</h3>
                       <p className="text-sm text-muted-foreground mt-1">
                         {day.description}
                       </p>

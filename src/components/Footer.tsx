@@ -34,7 +34,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -57,7 +57,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-gray-400 mb-6 max-w-md"
+              className="text-gray-400 mb-6 max-w-md text-sm sm:text-base"
             >
               Discover the true heart of the Himalayas with our expertly guided treks. 
               Creating unforgettable adventures while respecting nature and local communities.
