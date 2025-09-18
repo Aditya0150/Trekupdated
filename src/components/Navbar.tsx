@@ -42,9 +42,8 @@ export default function Navbar() {
             <img
               src="https://harmless-tapir-303.convex.cloud/api/storage/3e4ba243-1be0-424c-a7c9-04f4caccbfef"
               alt="Off Beat Himalaya Logo"
-              className="h-8 w-8 object-contain mr-2"
+              className="h-8 w-8 object-contain"
             />
-            <span className="text-xl font-bold text-white">Off Beat Himalaya</span>
           </motion.div>
 
           {/* Desktop Navigation */}
