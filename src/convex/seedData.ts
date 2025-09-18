@@ -11,7 +11,7 @@ export const seedTreks = mutation({
         duration: "6 days",
         difficulty: "Moderate",
         price: 15000,
-        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/1ef5d76b-4648-4297-a0bf-6f4f64f41c4a",
         featured: true,
         location: "Uttarakhand, India",
         highlights: ["UNESCO World Heritage Site", "Alpine Flowers", "Himalayan Views", "Photography Paradise"]
@@ -23,7 +23,7 @@ export const seedTreks = mutation({
         duration: "5 days",
         difficulty: "Moderate",
         price: 12000,
-        image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=600&fit=crop",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/c2e2808b-b4a0-4865-ad33-4a9d6a64b934",
         featured: true,
         location: "Uttarakhand, India",
         highlights: ["Sacred Temple", "Spiritual Experience", "Mountain Views", "Cultural Heritage"]
@@ -35,7 +35,7 @@ export const seedTreks = mutation({
         duration: "8 days",
         difficulty: "Challenging",
         price: 18000,
-        image: "https://images.unsplash.com/photo-1464822759844-d150ad6d1c71?w=800&h=600&fit=crop",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/d2d066ba-483a-4535-8371-b4c2d848c21a",
         featured: true,
         location: "Uttarakhand, India",
         highlights: ["Mystery Lake", "Ancient Skeletons", "High Altitude", "Adventure Challenge"]
@@ -47,7 +47,7 @@ export const seedTreks = mutation({
         duration: "7 days",
         difficulty: "Easy to Moderate",
         price: 14000,
-        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/e0af7db7-f107-4599-a953-902df559cd86",
         featured: false,
         location: "Uttarakhand, India",
         highlights: ["Valley of Gods", "Ancient Villages", "Swargarohini Views", "Cultural Experience"]
@@ -59,7 +59,7 @@ export const seedTreks = mutation({
         duration: "6 days",
         difficulty: "Moderate",
         price: 16000,
-        image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=600&fit=crop",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/1fe4d1c9-1b59-452d-a0f0-a70bd6fb36e2",
         featured: false,
         location: "Uttarakhand, India",
         highlights: ["Panoramic Views", "Nanda Devi", "Dronagiri Peak", "Mountain Photography"]
@@ -71,7 +71,7 @@ export const seedTreks = mutation({
         duration: "5 days",
         difficulty: "Easy",
         price: 11000,
-        image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=600&fit=crop",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/858a3d3f-128a-47c8-8c7d-a3235ebb537c",
         featured: false,
         location: "Uttarakhand, India",
         highlights: ["Winter Trek", "Snow Forests", "360° Views", "Beginner Friendly"]
