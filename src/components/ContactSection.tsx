@@ -16,9 +16,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useAction } from "convex/react";
 
 export default function ContactSection() {
   const createContact = useMutation(api.contacts.createContact);
+  const sendContactEmail = useAction(api.email.sendContactEmail);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -33,6 +35,21 @@ export default function ContactSection() {
 
     try {
       await createContact(formData);
+
+      // Attempt to send email notification to your address
+      try {
+        await sendContactEmail({
+          name: formData.name,
+          email: formData.email,
+          address: formData.address || undefined,
+          message: formData.message,
+          toEmail: "adityanegi281@gmail.com",
+        });
+      } catch (err) {
+        // Don't block the user success if email fails; log and show a gentle notice
+        console.error("Email send failed:", err);
+      }
+
       toast.success("Message sent successfully!", {
         description: "We'll get back to you within 24 hours.",
       });

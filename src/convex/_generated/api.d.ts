@@ -17,6 +17,7 @@ import type * as auth_emailOtp from "../auth/emailOtp.js";
 import type * as auth from "../auth.js";
 import type * as bookings from "../bookings.js";
 import type * as contacts from "../contacts.js";
+import type * as email from "../email.js";
 import type * as http from "../http.js";
 import type * as itineraries from "../itineraries.js";
 import type * as seedData from "../seedData.js";
@@ -36,6 +37,7 @@ declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   bookings: typeof bookings;
   contacts: typeof contacts;
+  email: typeof email;
   http: typeof http;
   itineraries: typeof itineraries;
   seedData: typeof seedData;
