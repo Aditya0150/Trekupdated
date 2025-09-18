@@ -32,12 +32,43 @@ const schema = defineSchema(
       role: v.optional(roleValidator), // role of the user. do not remove
     }).index("email", ["email"]), // index for the email. do not remove or modify
 
-    // add other tables here
+    // Trek data
+    treks: defineTable({
+      name: v.string(),
+      description: v.string(),
+      altitude: v.string(),
+      duration: v.string(),
+      difficulty: v.string(),
+      price: v.number(),
+      image: v.string(),
+      featured: v.optional(v.boolean()),
+      location: v.string(),
+      highlights: v.array(v.string()),
+    }).index("by_featured", ["featured"]),
 
-    // tableName: defineTable({
-    //   ...
-    //   // table fields
-    // }).index("by_field", ["field"])
+    // Bookings
+    bookings: defineTable({
+      userId: v.id("users"),
+      trekId: v.id("treks"),
+      name: v.string(),
+      email: v.string(),
+      phone: v.string(),
+      participants: v.number(),
+      preferredDate: v.string(),
+      message: v.optional(v.string()),
+      status: v.string(), // "pending", "confirmed", "cancelled"
+    }).index("by_user", ["userId"])
+      .index("by_trek", ["trekId"])
+      .index("by_status", ["status"]),
+
+    // Contact messages
+    contacts: defineTable({
+      name: v.string(),
+      email: v.string(),
+      address: v.optional(v.string()),
+      message: v.string(),
+      status: v.string(), // "new", "replied", "closed"
+    }).index("by_status", ["status"]),
   },
   {
     schemaValidation: false,
