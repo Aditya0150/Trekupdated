@@ -9,6 +9,13 @@ import { useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function ContactSection() {
   const createContact = useMutation(api.contacts.createContact);
@@ -122,36 +129,50 @@ export default function ContactSection() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={index}
-                  href={info.href}
-                  target={info.href.startsWith('http') ? '_blank' : undefined}
-                  rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                  className="block"
-                >
-                  <Card className="bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all duration-300">
-                    <CardContent className="p-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
-                          <info.icon className="h-5 w-5 text-white" />
+            <TooltipProvider>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 items-stretch">
+                {contactInfo.map((info, index) => (
+                  <motion.a
+                    key={index}
+                    href={info.href}
+                    target={info.href.startsWith('http') ? '_blank' : undefined}
+                    rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -2 }}
+                    className="block h-full"
+                  >
+                    <Card className="h-full bg-white/10 border-white/15 backdrop-blur-sm hover:bg-white/15 transition-all duration-300 hover:ring-1 hover:ring-white/20">
+                      <CardContent className="p-5 md:p-6">
+                        <div className="flex items-center gap-3">
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-red-600 flex items-center justify-center ring-1 ring-white/20">
+                                <info.icon className="h-5 w-5 text-white" />
+                              </div>
+                            </TooltipTrigger>
+                            <TooltipContent side="top" className="text-xs">
+                              {info.label}
+                            </TooltipContent>
+                          </Tooltip>
+
+                          <div className="min-w-0">
+                            <Badge variant="secondary" className="bg-white/15 text-white border-white/20 mb-1">
+                              {info.label}
+                            </Badge>
+                            <div className="text-xs sm:text-sm text-gray-200 truncate">
+                              {info.value}
+                            </div>
+                          </div>
                         </div>
-                        <div>
-                          <div className="font-medium text-white text-sm sm:text-base">{info.label}</div>
-                          <div className="text-xs sm:text-sm text-gray-300">{info.value}</div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.a>
-              ))}
-            </div>
+                      </CardContent>
+                    </Card>
+                  </motion.a>
+                ))}
+              </div>
+            </TooltipProvider>
           </motion.div>
 
           {/* Contact Form */}
