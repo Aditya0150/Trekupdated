@@ -26,7 +26,20 @@ export default function Landing() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      {/* Background image layer */}
+      <div
+        aria-hidden
+        className="fixed inset-0 -z-10"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&h=1080&fit=crop"
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
+
       <Navbar />
       <HeroSection />
       <TreksSection />

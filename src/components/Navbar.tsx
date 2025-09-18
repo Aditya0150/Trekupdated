@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/use-auth";
-import { Menu, Mountain, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 export default function Navbar() {
-  const { isAuthenticated, user, signOut } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -26,19 +25,11 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
-  const handleAuthAction = () => {
-    if (isAuthenticated) {
-      signOut();
-    } else {
-      navigate("/auth");
-    }
-  };
-
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-md border-b border-white/20"
+      className="fixed top-0 left-0 right-0 z-50 bg-transparent"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -70,14 +61,6 @@ export default function Navbar() {
             <a href="#contact" className="text-white hover:text-orange-300 transition-colors">
               Contact
             </a>
-            
-            <Button
-              onClick={handleAuthAction}
-              variant="outline"
-              className="bg-white/10 border-white/30 text-white hover:bg-white/20"
-            >
-              {isAuthenticated ? `Sign Out (${user?.name || 'User'})` : 'Sign In'}
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -134,16 +117,6 @@ export default function Navbar() {
               >
                 Contact
               </a>
-              <Button
-                onClick={() => {
-                  handleAuthAction();
-                  setIsMenuOpen(false);
-                }}
-                variant="outline"
-                className="bg-white/10 border-white/30 text-white hover:bg-white/20 w-full"
-              >
-                {isAuthenticated ? `Sign Out (${user?.name || 'User'})` : 'Sign In'}
-              </Button>
             </div>
           </motion.div>
         )}

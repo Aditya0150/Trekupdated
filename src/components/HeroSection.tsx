@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -55,15 +55,6 @@ export default function HeroSection() {
           >
             Discover Adventures
             <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-
-          <Button
-            size="lg"
-            variant="outline"
-            className="bg-white/10 border-white/30 text-white hover:bg-white/20 px-8 py-3 text-lg backdrop-blur-sm"
-          >
-            <Play className="mr-2 h-5 w-5" />
-            Watch Video
           </Button>
         </motion.div>
 
