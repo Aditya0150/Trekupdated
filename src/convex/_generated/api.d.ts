@@ -18,6 +18,7 @@ import type * as auth from "../auth.js";
 import type * as bookings from "../bookings.js";
 import type * as contacts from "../contacts.js";
 import type * as http from "../http.js";
+import type * as itineraries from "../itineraries.js";
 import type * as seedData from "../seedData.js";
 import type * as treks from "../treks.js";
 import type * as users from "../users.js";
@@ -36,6 +37,7 @@ declare const fullApi: ApiFromModules<{
   bookings: typeof bookings;
   contacts: typeof contacts;
   http: typeof http;
+  itineraries: typeof itineraries;
   seedData: typeof seedData;
   treks: typeof treks;
   users: typeof users;

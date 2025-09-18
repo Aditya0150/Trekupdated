@@ -85,3 +85,54 @@ export const seedTreks = mutation({
     return { success: true, count: treks.length };
   },
 });
+
+export const seedItineraries = mutation({
+  args: {},
+  handler: async (ctx) => {
+    const allTreks = await ctx.db.query("treks").collect();
+
+    // Build simple demo itineraries for each trek if not present
+    let count = 0;
+    for (const trek of allTreks) {
+      const existing = await ctx.db
+        .query("itineraries")
+        .withIndex("by_trek", (q) => q.eq("trekId", trek._id))
+        .unique()
+        .catch(() => null);
+
+      if (existing) continue;
+
+      const days = [
+        {
+          dayNumber: 1,
+          title: `Arrival & Briefing`,
+          description:
+            `Arrive at base. Meet guides, safety briefing, and acclimatization walk around ${trek.location}.`,
+        },
+        {
+          dayNumber: 2,
+          title: `Trail Start`,
+          description:
+            `Start trekking. Gentle ascent through forests/meadows. Overnight in camp/guesthouse.`,
+        },
+        {
+          dayNumber: 3,
+          title: `Summit/Primary Viewpoint`,
+          description:
+            `Reach the key viewpoint/spot for ${trek.name}. Panoramic Himalayan vistas and photography.`,
+        },
+        {
+          dayNumber: 4,
+          title: `Return & Departure`,
+          description:
+            `Descend back to base. Debrief, certificates, and departure.`,
+        },
+      ];
+
+      await ctx.db.insert("itineraries", { trekId: trek._id, days });
+      count++;
+    }
+
+    return { success: true, count };
+  },
+});

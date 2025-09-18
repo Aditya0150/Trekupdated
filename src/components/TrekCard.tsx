@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { MapPin, Clock, TrendingUp, Users } from "lucide-react";
 import { Doc } from "@/convex/_generated/dataModel";
+import { useNavigate } from "react-router";
 
 interface TrekCardProps {
   trek: Doc<"treks">;
@@ -11,6 +12,7 @@ interface TrekCardProps {
 }
 
 export default function TrekCard({ trek, onBook }: TrekCardProps) {
+  const navigate = useNavigate();
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty.toLowerCase()) {
       case 'easy':
@@ -81,13 +83,22 @@ export default function TrekCard({ trek, onBook }: TrekCardProps) {
         </CardContent>
 
         <CardFooter className="p-6 pt-0">
-          <Button
-            onClick={() => onBook(trek)}
-            className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
-          >
-            <Users className="mr-2 h-4 w-4" />
-            Book Now
-          </Button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+            <Button
+              onClick={() => onBook(trek)}
+              className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
+            >
+              <Users className="mr-2 h-4 w-4" />
+              Book Now
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => navigate(`/treks/${trek._id}/itinerary`)}
+              className="w-full"
+            >
+              Show Itinerary
+            </Button>
+          </div>
         </CardFooter>
       </Card>
     </motion.div>

@@ -69,6 +69,18 @@ const schema = defineSchema(
       message: v.string(),
       status: v.string(), // "new", "replied", "closed"
     }).index("by_status", ["status"]),
+
+    // Itineraries - per trek day-by-day plan
+    itineraries: defineTable({
+      trekId: v.id("treks"),
+      days: v.array(
+        v.object({
+          dayNumber: v.number(),
+          title: v.string(),
+          description: v.string(),
+        })
+      ),
+    }).index("by_trek", ["trekId"]),
   },
   {
     schemaValidation: false,
