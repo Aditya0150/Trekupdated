@@ -162,12 +162,12 @@ export default function ContactSection() {
             viewport={{ once: true }}
           >
             <Card className="bg-white/10 border-white/20 backdrop-blur-sm">
-              <CardContent className="p-5 md:p-6">
-                <h3 className="text-xl sm:text-2xl font-bold mb-5 md:mb-6 text-white">Send us a Message</h3>
+              <CardContent className="p-6 md:p-7">
+                <h3 className="text-xl sm:text-2xl font-bold mb-6 text-white">Send us a Message</h3>
                 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                    <div>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
                       <Label htmlFor="contact-name" className="text-white">Name *</Label>
                       <Input
                         id="contact-name"
@@ -179,7 +179,7 @@ export default function ContactSection() {
                         placeholder="Your name"
                       />
                     </div>
-                    <div>
+                    <div className="space-y-2">
                       <Label htmlFor="contact-email" className="text-white">Email *</Label>
                       <Input
                         id="contact-email"
@@ -194,7 +194,7 @@ export default function ContactSection() {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="contact-address" className="text-white">Address</Label>
                     <Input
                       id="contact-address"
@@ -206,7 +206,7 @@ export default function ContactSection() {
                     />
                   </div>
 
-                  <div>
+                  <div className="space-y-2">
                     <Label htmlFor="contact-message" className="text-white">Message *</Label>
                     <Textarea
                       id="contact-message"
@@ -214,7 +214,7 @@ export default function ContactSection() {
                       onChange={(e) => handleInputChange("message", e.target.value)}
                       required
                       disabled={isLoading}
-                      className="bg-white/10 border-white/30 text-white placeholder:text-gray-400 min-h-[110px] md:min-h-[120px]"
+                      className="bg-white/10 border-white/30 text-white placeholder:text-gray-400 min-h-[120px]"
                       placeholder="Tell us about your dream adventure..."
                     />
                   </div>
