@@ -68,3 +68,33 @@ export const updateImages = mutation({
     return { updated };
   },
 });
+
+export const removeKedarnathTrek = mutation({
+  args: {},
+  handler: async (ctx) => {
+    // Find all treks named "Kedarnath Trek"
+    const treks = await ctx.db.query("treks").collect();
+    const kedarnathTreks = treks.filter((t) => t.name === "Kedarnath Trek");
+
+    let removedTreks = 0;
+    let removedItineraries = 0;
+
+    for (const trek of kedarnathTreks) {
+      // Delete linked itineraries via index by_trek
+      const itins = await ctx.db
+        .query("itineraries")
+        .withIndex("by_trek", (q) => q.eq("trekId", trek._id))
+        .collect();
+
+      for (const itin of itins) {
+        await ctx.db.delete(itin._id);
+        removedItineraries++;
+      }
+
+      await ctx.db.delete(trek._id);
+      removedTreks++;
+    }
+
+    return { removedTreks, removedItineraries };
+  },
+});

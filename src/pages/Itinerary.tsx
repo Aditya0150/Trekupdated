@@ -343,12 +343,90 @@ export default function ItineraryPage() {
     },
   ];
 
+  // Add: Rich itinerary for Roopkund Trek (8 days)
+  const richRoopkundData = [
+    {
+      day: 1,
+      title: "Rishikesh to Lohajung",
+      subtitle: "Scenic Himalayan Drive",
+      details: [
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Distance", value: "270 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "10 hrs" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Lohajung" },
+      ],
+      bullets: ["Beautiful drive via Devprayag, Karnaprayag", "Stay in Lohajung homestay"],
+    },
+    {
+      day: 2,
+      title: "Lohajung to Didna",
+      subtitle: "Trek Begins",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "7 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "5 hrs" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Didna village" },
+      ],
+      bullets: ["Moderate climb", "Through dense forests and rivers"],
+    },
+    {
+      day: 3,
+      title: "Didna to Bedni Bugyal",
+      subtitle: "Meadow Views",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "11 km" },
+        { icon: <TreePine className="h-4 w-4 text-orange-600" />, label: "Altitude", value: "11,500 ft" },
+      ],
+      bullets: ["Alpine meadows, views of Trishul", "Camp overnight"],
+    },
+    {
+      day: 4,
+      title: "Bedni to Bhagwabasa",
+      subtitle: "High Altitude Trek",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "10 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "7 hrs" },
+      ],
+      bullets: ["Cross Patar Nachauni & Kalu Vinayak", "Camp at Bhagwabasa"],
+    },
+    {
+      day: 5,
+      title: "Bhagwabasa to Roopkund & Back",
+      subtitle: "Summit Day",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Altitude", value: "16,000 ft" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "7-8 hrs" },
+      ],
+      bullets: ["Reach Roopkund Lake", "Return to Patar Nachauni"],
+    },
+    {
+      day: 6,
+      title: "Return to Lohajung",
+      subtitle: "Long Descent",
+      details: [],
+      bullets: ["Same route descent", "Stay in Lohajung"],
+    },
+    {
+      day: 7,
+      title: "Buffer Day",
+      subtitle: "Weather Contingency",
+      details: [],
+      bullets: ["Used in case of delays", "Otherwise explore Lohajung"],
+    },
+    {
+      day: 8,
+      title: "Lohajung to Rishikesh",
+      subtitle: "Journey Ends",
+      details: [],
+      bullets: ["Final drive back", "Reach by evening"],
+    },
+  ];
+
   // Determine if we should use a rich itinerary and select the correct data
   const useRich =
     trek?.name === "Valley of Flowers" ||
     trek?.name === "Kedarkantha" ||
     trek?.name === "Har Ki Dun" ||
-    trek?.name === "Kuari Pass";
+    trek?.name === "Kuari Pass" ||
+    trek?.name === "Roopkund Trek";
 
   const richData =
     trek?.name === "Kedarkantha"
@@ -357,6 +435,8 @@ export default function ItineraryPage() {
       ? richHarKiDunData
       : trek?.name === "Kuari Pass"
       ? richKuariPassData
+      : trek?.name === "Roopkund Trek"
+      ? richRoopkundData
       : richItineraryData;
 
   if (trek === undefined || itinerary === undefined) {

@@ -16,18 +16,7 @@ export const seedTreks = mutation({
         location: "Uttarakhand, India",
         highlights: ["UNESCO World Heritage Site", "Alpine Flowers", "Himalayan Views", "Photography Paradise"]
       },
-      {
-        name: "Kedarnath Trek",
-        description: "A spiritual journey to one of the most sacred Shiva temples in the Himalayas. Experience divine energy amidst snow-capped peaks and pristine mountain landscapes.",
-        altitude: "3,583 m",
-        duration: "5 days",
-        difficulty: "Moderate",
-        price: 12000,
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/c2e2808b-b4a0-4865-ad33-4a9d6a64b934",
-        featured: true,
-        location: "Uttarakhand, India",
-        highlights: ["Sacred Temple", "Spiritual Experience", "Mountain Views", "Cultural Heritage"]
-      },
+      
       {
         name: "Roopkund Trek",
         description: "A high-altitude Himalayan trek that takes you to Roopkund, a glacial lake shrouded in mystery and legends. Famous for its ancient human skeletons, this trail offers breathtaking views of snow-capped peaks and alpine meadows.",
