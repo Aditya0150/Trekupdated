@@ -50,7 +50,7 @@ export default function TreksSection() {
         </div>
 
         {/* Mobile: Original grid layout */}
-        <div className="grid md:hidden grid-cols-1 gap-6 items-stretch [grid-auto-rows:1fr]">
+        <div className="grid md:hidden grid-cols-1 gap-6 place-items-center [grid-auto-rows:1fr]">
           {treks.map((trek, index) => (
             <motion.div
               key={trek._id}
@@ -58,7 +58,7 @@ export default function TreksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="h-full"
+              className="h-full w-full max-w-xl mx-auto"
             >
               <TrekCard trek={trek} onBook={handleBookTrek} />
             </motion.div>

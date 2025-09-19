@@ -60,7 +60,7 @@ export default function StickyTrekStack({ treks, onBook }: StickyTrekStackProps)
           <TrekCard
             trek={trek}
             onBook={onBook}
-            className="shadow-2xl"
+            className="shadow-2xl mx-auto"
             // Make stacked cards slightly narrower for a compact look
             style={{
               width: "92%",
