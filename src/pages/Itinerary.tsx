@@ -167,9 +167,197 @@ export default function ItineraryPage() {
     },
   ];
 
+  // Add: Rich itinerary for Har Ki Dun (7 days)
+  const richHarKiDunData = [
+    {
+      day: 1,
+      title: "Dehradun to Sankri",
+      subtitle: "The Drive to the Base Camp",
+      details: [
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Distance", value: "210 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "9–10 hours" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Guesthouse in Sankri" },
+      ],
+      bullets: [
+        "Scenic drive through Mussoorie and Yamuna Valley",
+        "Evening briefing and rest at Sankri (6,400 ft)",
+      ],
+    },
+    {
+      day: 2,
+      title: "Sankri to Taluka (Drive), then trek to Seema",
+      subtitle: "The Trek Begins",
+      details: [
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Drive", value: "12 km" },
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "10 km (~5-6 hrs)" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Campsite at Seema" },
+      ],
+      bullets: [
+        "Drive to Taluka and start trek through dense forests",
+        "Cross streams and wooden bridges en route",
+      ],
+    },
+    {
+      day: 3,
+      title: "Seema to Har Ki Dun",
+      subtitle: "The Iconic Valley",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "11 km (~6 hrs)" },
+        { icon: <TreePine className="h-4 w-4 text-orange-600" />, label: "Altitude", value: "11,700 ft" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Campsite at Har Ki Dun" },
+      ],
+      bullets: [
+        "Gradual climb with views of Swargarohini & Jaundhar glacier",
+        "Camp beside the river with a view of the valley",
+      ],
+    },
+    {
+      day: 4,
+      title: "Har Ki Dun Exploration Day",
+      subtitle: "Rest, Explore, Enjoy",
+      details: [
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Activities", value: "Exploration & Acclimatization" },
+        { icon: <MapPin className="h-4 w-4 text-orange-600" />, label: "Nearby", value: "Maninda Tal, Jaundhar Glacier" },
+      ],
+      bullets: [
+        "Optional hike to Maninda Tal or just enjoy meadow walks",
+        "Photography, story sharing around bonfire",
+      ],
+    },
+    {
+      day: 5,
+      title: "Har Ki Dun to Seema",
+      subtitle: "Return Journey Begins",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "11 km (~5 hrs)" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Campsite at Seema" },
+      ],
+      bullets: [
+        "Retrace steps along the valley",
+        "Spotting birds and wildlife",
+      ],
+    },
+    {
+      day: 6,
+      title: "Seema to Taluka (Trek) → Sankri (Drive)",
+      subtitle: "Back to Base",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "10 km" },
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Drive", value: "12 km" },
+      ],
+      bullets: [
+        "Return trek to Taluka",
+        "Drive back to Sankri for overnight stay",
+      ],
+    },
+    {
+      day: 7,
+      title: "Sankri to Dehradun",
+      subtitle: "Departure Day",
+      details: [],
+      bullets: [
+        "Early morning drive back to Dehradun",
+        "End of a memorable Himalayan adventure",
+      ],
+    },
+  ];
+
+  // Add: Rich itinerary for Kuari Pass (6 days)
+  const richKuariPassData = [
+    {
+      day: 1,
+      title: "Rishikesh to Joshimath",
+      subtitle: "Base Arrival",
+      details: [
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Distance", value: "255 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "9–10 hrs" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Joshimath" },
+      ],
+      bullets: [
+        "Drive along Alaknanda river",
+        "Stay in hotel/guesthouse",
+      ],
+    },
+    {
+      day: 2,
+      title: "Joshimath to Dhak → Gulling",
+      subtitle: "Trek Begins",
+      details: [
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Drive", value: "12 km" },
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "5 km (3–4 hrs)" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Camp at Gulling" },
+      ],
+      bullets: [
+        "Oak forests and village trails",
+        "First views of Dronagiri peak",
+      ],
+    },
+    {
+      day: 3,
+      title: "Gulling to Tali Forest Camp",
+      subtitle: "Deep Forest Trail",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "6 km (5 hrs)" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Tali Forest Camp" },
+      ],
+      bullets: [
+        "Walk through dense mixed forests",
+        "Camp surrounded by alpine trees",
+      ],
+    },
+    {
+      day: 4,
+      title: "Tali → Kuari Pass Summit → Tali",
+      subtitle: "Summit Day",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "12 km round trip" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "7 hrs" },
+      ],
+      bullets: [
+        "Summit Kuari Pass (12,516 ft)",
+        "Stunning view of Himalayan giants",
+      ],
+    },
+    {
+      day: 5,
+      title: "Tali to Joshimath via Dhak",
+      subtitle: "Descent & Transfer",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "11 km" },
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Drive", value: "12 km" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Joshimath" },
+      ],
+      bullets: [
+        "Final descent to base village",
+        "Drive back to Joshimath",
+      ],
+    },
+    {
+      day: 6,
+      title: "Joshimath to Rishikesh",
+      subtitle: "Return Drive",
+      details: [],
+      bullets: [
+        "Trip concludes with cherished mountain moments",
+      ],
+    },
+  ];
+
   // Determine if we should use a rich itinerary and select the correct data
-  const useRich = trek?.name === "Valley of Flowers" || trek?.name === "Kedarkantha";
-  const richData = trek?.name === "Kedarkantha" ? richKedarkanthaData : richItineraryData;
+  const useRich =
+    trek?.name === "Valley of Flowers" ||
+    trek?.name === "Kedarkantha" ||
+    trek?.name === "Har Ki Dun" ||
+    trek?.name === "Kuari Pass";
+
+  const richData =
+    trek?.name === "Kedarkantha"
+      ? richKedarkanthaData
+      : trek?.name === "Har Ki Dun"
+      ? richHarKiDunData
+      : trek?.name === "Kuari Pass"
+      ? richKuariPassData
+      : richItineraryData;
 
   if (trek === undefined || itinerary === undefined) {
     return (
