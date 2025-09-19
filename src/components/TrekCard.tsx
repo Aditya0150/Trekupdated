@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { MapPin, Clock, TrendingUp, Users } from "lucide-react";
 import { Doc } from "@/convex/_generated/dataModel";
-import { useNavigate } from "react-router";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface TrekCardProps {
@@ -13,7 +12,6 @@ interface TrekCardProps {
 }
 
 export default function TrekCard({ trek, onBook }: TrekCardProps) {
-  const navigate = useNavigate();
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty.toLowerCase()) {
       case 'easy':
@@ -97,12 +95,8 @@ export default function TrekCard({ trek, onBook }: TrekCardProps) {
               <Users className="mr-2 h-4 w-4" />
               Book Now
             </Button>
-            <Button
-              variant="outline"
-              onClick={() => navigate(`/treks/${trek._id}/itinerary`)}
-              className="w-full"
-            >
-              Show Itinerary
+            <Button variant="outline" className="w-full" asChild>
+              <a href={`/treks/${trek._id}/itinerary`}>Show Itinerary</a>
             </Button>
           </div>
         </CardFooter>
