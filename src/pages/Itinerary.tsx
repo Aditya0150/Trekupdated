@@ -100,13 +100,67 @@ export default function ItineraryPage() {
           </div>
         </div>
 
+        {/* About Section — polished split layout like reference */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mt-8"
         >
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-4">
+          <Card className="border rounded-2xl bg-[oklch(0.99_0.01_85)]">
+            <CardContent className="p-5 md:p-7">
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-5 flex items-center gap-2">
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm">!</span>
+                About the {trek.name}
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start">
+                <div>
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                    {trek.description}
+                  </p>
+
+                  <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div className="rounded-xl border bg-white p-4">
+                      <div className="text-xs uppercase text-muted-foreground">Altitude</div>
+                      <div className="mt-1 text-lg font-semibold">{trek.altitude}</div>
+                    </div>
+                    <div className="rounded-xl border bg-white p-4">
+                      <div className="text-xs uppercase text-muted-foreground">Days Trek</div>
+                      <div className="mt-1 text-lg font-semibold">{trek.duration}</div>
+                    </div>
+                    <div className="rounded-xl border bg-white p-4">
+                      <div className="text-xs uppercase text-muted-foreground">Highlights</div>
+                      <div className="mt-1 text-lg font-semibold">{trek.highlights.length}+</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl overflow-hidden border">
+                  <AspectRatio ratio={16 / 9}>
+                    <img
+                      src={trek.image}
+                      alt={trek.name}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                    />
+                  </AspectRatio>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Detailed Itinerary — card style updated to match reference */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-8"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground mb-4 flex items-center gap-2">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm">⛰</span>
             Detailed Itinerary
           </h2>
           <div className="space-y-5">
@@ -117,19 +171,27 @@ export default function ItineraryPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <Card className="border rounded-2xl bg-white">
+                <Card className="rounded-2xl bg-white border border-orange-100 shadow-none">
                   <CardContent className="p-5 md:p-6">
                     <div className="flex items-start gap-4">
-                      <div className="w-11 h-11 rounded-full bg-gradient-to-b from-orange-500 to-red-600 text-white flex items-center justify-center font-bold shrink-0">
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-b from-orange-500 to-red-600 text-white flex items-center justify-center font-bold shrink-0">
                         {day.dayNumber}
                       </div>
-                      <div className="min-w-0">
-                        <h3 className="text-lg md:text-xl font-semibold text-foreground">
-                          {day.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                          {day.description}
-                        </p>
+                      <div className="min-w-0 w-full">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                          <h3 className="text-lg md:text-xl font-semibold text-foreground">
+                            {day.title}
+                          </h3>
+                          {/* optional subtle chip to mimic reference stat badges */}
+                          <div className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-700 border border-orange-100 px-3 py-1 text-xs font-medium">
+                            {trek.location}
+                          </div>
+                        </div>
+                        <ul className="mt-3 space-y-2">
+                          <li className="text-sm text-muted-foreground leading-relaxed bg-orange-50/40 rounded-lg px-3 py-2 border border-orange-100">
+                            {day.description}
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </CardContent>
