@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Doc } from "@/convex/_generated/dataModel";
 import { Loader2 } from "lucide-react";
+import StickyTrekStack from "./StickyTrekStack";
 
 export default function TreksSection() {
   const treks = useQuery(api.treks.getAllTreks);
@@ -43,7 +44,13 @@ export default function TreksSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch [grid-auto-rows:1fr]">
+        {/* Desktop: Stacked scroll cards */}
+        <div className="hidden md:block">
+          <StickyTrekStack treks={treks} onBook={handleBookTrek} />
+        </div>
+
+        {/* Mobile: Original grid layout */}
+        <div className="grid md:hidden grid-cols-1 gap-8 items-stretch [grid-auto-rows:1fr]">
           {treks.map((trek, index) => (
             <motion.div
               key={trek._id}

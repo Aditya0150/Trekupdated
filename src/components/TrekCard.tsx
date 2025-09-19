@@ -9,9 +9,11 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 interface TrekCardProps {
   trek: Doc<"treks">;
   onBook: (trek: Doc<"treks">) => void;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
-export default function TrekCard({ trek, onBook }: TrekCardProps) {
+export default function TrekCard({ trek, onBook, className, style }: TrekCardProps) {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty.toLowerCase()) {
       case 'easy':
@@ -29,7 +31,8 @@ export default function TrekCard({ trek, onBook }: TrekCardProps) {
     <motion.div
       whileHover={{ y: -5 }}
       transition={{ duration: 0.3 }}
-      className="h-full"
+      className={["h-full", className].filter(Boolean).join(" ")}
+      style={style}
     >
       <Card className="overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-xl h-full flex flex-col">
         <div className="relative">
