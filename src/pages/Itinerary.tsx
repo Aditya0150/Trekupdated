@@ -92,7 +92,84 @@ export default function ItineraryPage() {
     },
   ];
 
-  const useRich = trek?.name === "Valley of Flowers";
+  // New: Rich itinerary for Kedarkantha (6 days)
+  const richKedarkanthaData = [
+    {
+      day: 1,
+      title: "Dehradun to Sankri",
+      subtitle: "Trek Base Arrival",
+      details: [
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Distance", value: "200 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "10 hrs" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Sankri Guesthouse" },
+      ],
+      bullets: [
+        "Drive through scenic Himalayan terrain",
+        "Reach Sankri by evening",
+      ],
+    },
+    {
+      day: 2,
+      title: "Sankri to Juda Ka Talab",
+      subtitle: "Trek Begins",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "4 km (4 hrs)" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Juda Ka Talab Camp" },
+      ],
+      bullets: [
+        "Snowy pine forests and frozen lake",
+        "Overnight camp under the stars",
+      ],
+    },
+    {
+      day: 3,
+      title: "Juda Ka Talab to Kedarkantha Base",
+      subtitle: "Alpine Wonderland",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "4 km (3 hrs)" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Base Camp" },
+      ],
+      bullets: [
+        "Snowy trails and open meadows",
+        "Spectacular views of Swargarohini",
+      ],
+    },
+    {
+      day: 4,
+      title: "Kedarkantha Summit → Base → Sankri",
+      subtitle: "Summit Day",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Summit", value: "12,500 ft" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Total Trek", value: "12 km" },
+      ],
+      bullets: [
+        "Early morning summit climb",
+        "360° Himalayan views from top",
+        "Descend back to Sankri",
+      ],
+    },
+    {
+      day: 5,
+      title: "Buffer/Contingency Day",
+      subtitle: "Weather Flexibility",
+      details: [],
+      bullets: [
+        "Extra day to accommodate delays or snowfall",
+        "Used only if required",
+      ],
+    },
+    {
+      day: 6,
+      title: "Sankri to Dehradun",
+      subtitle: "Return Journey",
+      details: [],
+      bullets: ["Drive back to Dehradun with unforgettable memories"],
+    },
+  ];
+
+  // Determine if we should use a rich itinerary and select the correct data
+  const useRich = trek?.name === "Valley of Flowers" || trek?.name === "Kedarkantha";
+  const richData = trek?.name === "Kedarkantha" ? richKedarkanthaData : richItineraryData;
 
   if (trek === undefined || itinerary === undefined) {
     return (
@@ -241,7 +318,7 @@ export default function ItineraryPage() {
           </h2>
           <div className="space-y-5">
             {useRich ? (
-              richItineraryData.map((item, idx) => (
+              richData.map((item, idx) => (
                 <motion.div
                   key={item.day}
                   variants={dayCardVariants}
