@@ -32,17 +32,17 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 bg-transparent"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center cursor-pointer"
+            className="flex items-center cursor-pointer -ml-4 sm:-ml-6 lg:-ml-8"
             onClick={() => navigate("/")}
           >
             <img
               src="https://harmless-tapir-303.convex.cloud/api/storage/3e4ba243-1be0-424c-a7c9-04f4caccbfef"
               alt="Off Beat Himalaya Logo"
-              className="h-7 w-7 sm:h-8 sm:w-8 object-contain"
+              className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
             />
           </motion.div>
 
