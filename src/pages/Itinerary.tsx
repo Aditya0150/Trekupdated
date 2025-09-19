@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { motion } from "framer-motion";
@@ -51,17 +52,21 @@ export default function ItineraryPage() {
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <div className="relative overflow-hidden rounded-xl border">
-            <img
-              src={trek.image}
-              alt={trek.name}
-              className="w-full h-56 md:h-72 object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            <div className="absolute bottom-4 left-4">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                {trek.name} — Itinerary
-              </h1>
-            </div>
+            <AspectRatio ratio={16 / 9} className="relative">
+              <img
+                src={trek.image}
+                alt={trek.name}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+                  {trek.name} — Itinerary
+                </h1>
+              </div>
+            </AspectRatio>
           </div>
         </motion.div>
 

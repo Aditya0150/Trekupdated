@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { MapPin, Clock, TrendingUp, Users } from "lucide-react";
 import { Doc } from "@/convex/_generated/dataModel";
 import { useNavigate } from "react-router";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface TrekCardProps {
   trek: Doc<"treks">;
@@ -34,11 +35,15 @@ export default function TrekCard({ trek, onBook }: TrekCardProps) {
     >
       <Card className="overflow-hidden bg-white/90 backdrop-blur-sm border-0 shadow-xl h-full flex flex-col">
         <div className="relative">
-          <img
-            src={trek.image}
-            alt={trek.name}
-            className="w-full h-40 sm:h-48 md:h-56 object-cover"
-          />
+          <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-none">
+            <img
+              src={trek.image}
+              alt={trek.name}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
+          </AspectRatio>
           <div className="absolute top-4 left-4">
             <Badge className={`${getDifficultyColor(trek.difficulty)} text-white`}>
               {trek.difficulty}
