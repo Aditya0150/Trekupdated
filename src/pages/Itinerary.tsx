@@ -4,7 +4,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { motion } from "framer-motion";
-import { ArrowLeft, MapPinned, Calendar, Mountain, IndianRupee } from "lucide-react";
+import { ArrowLeft, MapPinned, Calendar, Mountain, IndianRupee, ArrowRight } from "lucide-react";
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import BookingDialog from "@/components/BookingDialog";
@@ -171,10 +171,11 @@ export default function ItineraryPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <Card className="rounded-2xl bg-white border border-orange-100 shadow-none">
+                <Card className="group relative overflow-hidden rounded-2xl border border-orange-200/60 bg-gradient-to-br from-orange-50/60 to-white shadow-sm hover:shadow-md transition-shadow">
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-orange-100/60 blur-0" />
                   <CardContent className="p-5 md:p-6">
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-b from-orange-500 to-red-600 text-white flex items-center justify-center font-bold shrink-0">
+                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-b from-orange-500 to-red-600 text-white flex items-center justify-center font-extrabold shadow-md ring-2 ring-white/70 shrink-0">
                         {day.dayNumber}
                       </div>
                       <div className="min-w-0 w-full">
@@ -182,14 +183,18 @@ export default function ItineraryPage() {
                           <h3 className="text-lg md:text-xl font-semibold text-foreground">
                             {day.title}
                           </h3>
-                          {/* optional subtle chip to mimic reference stat badges */}
                           <div className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-700 border border-orange-100 px-3 py-1 text-xs font-medium">
                             {trek.location}
                           </div>
                         </div>
                         <ul className="mt-3 space-y-2">
-                          <li className="text-sm text-muted-foreground leading-relaxed bg-orange-50/40 rounded-lg px-3 py-2 border border-orange-100">
-                            {day.description}
+                          <li className="flex items-start gap-2 text-sm leading-relaxed">
+                            <span className="mt-1 text-orange-600">
+                              <ArrowRight className="h-4 w-4" />
+                            </span>
+                            <span className="flex-1 bg-orange-50/50 rounded-lg px-3 py-2 border border-orange-100 text-muted-foreground">
+                              {day.description}
+                            </span>
                           </li>
                         </ul>
                       </div>
