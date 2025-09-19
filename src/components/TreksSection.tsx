@@ -50,7 +50,7 @@ export default function TreksSection() {
         </div>
 
         {/* Mobile: Original grid layout */}
-        <div className="grid md:hidden grid-cols-1 gap-8 items-stretch [grid-auto-rows:1fr]">
+        <div className="grid md:hidden grid-cols-1 gap-6 items-stretch [grid-auto-rows:1fr]">
           {treks.map((trek, index) => (
             <motion.div
               key={trek._id}

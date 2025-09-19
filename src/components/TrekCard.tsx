@@ -46,19 +46,19 @@ export default function TrekCard({ trek, onBook, className, style }: TrekCardPro
             />
           </AspectRatio>
           <div className="absolute top-4 left-4">
-            <Badge className={`${getDifficultyColor(trek.difficulty)} text-white`}>
+            <Badge className={`${getDifficultyColor(trek.difficulty)} text-white text-xs px-2 py-0.5`}>
               {trek.difficulty}
             </Badge>
           </div>
           <div className="absolute top-4 right-4">
-            <Badge variant="secondary" className="bg-black/70 text-white">
+            <Badge variant="secondary" className="bg-black/70 text-white text-xs px-2 py-0.5">
               ₹{trek.price.toLocaleString()}
             </Badge>
           </div>
         </div>
 
-        <CardContent className="p-5 md:p-6 flex-grow">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{trek.name}</h3>
+        <CardContent className="p-4 md:p-5 flex-grow">
+          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{trek.name}</h3>
           
           <div className="flex items-center gap-3 md:gap-4 text-xs sm:text-sm text-gray-600 mb-3">
             <div className="flex items-center gap-1">
@@ -76,12 +76,12 @@ export default function TrekCard({ trek, onBook, className, style }: TrekCardPro
             <span className="text-xs sm:text-sm font-medium text-gray-700">Altitude: {trek.altitude}</span>
           </div>
 
-          <p className="text-gray-700 text-sm md:text-base mb-4 line-clamp-3">
+          <p className="text-gray-700 text-sm md:text-base mb-4 line-clamp-2">
             {trek.description}
           </p>
 
           <div className="flex flex-wrap gap-1.5 mb-4">
-            {trek.highlights.slice(0, 3).map((highlight, index) => (
+            {trek.highlights.slice(0, 2).map((highlight, index) => (
               <Badge key={index} variant="outline" className="text-xs">
                 {highlight}
               </Badge>
@@ -89,16 +89,17 @@ export default function TrekCard({ trek, onBook, className, style }: TrekCardPro
           </div>
         </CardContent>
 
-        <CardFooter className="p-5 md:p-6 pt-0">
+        <CardFooter className="p-4 md:p-5 pt-0">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 w-full">
             <Button
+              size="sm"
               onClick={() => onBook(trek)}
               className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
             >
               <Users className="mr-2 h-4 w-4" />
               Book Now
             </Button>
-            <Button variant="outline" className="w-full" asChild>
+            <Button variant="outline" size="sm" className="w-full" asChild>
               <a href={`/treks/${trek._id}/itinerary`}>Show Itinerary</a>
             </Button>
           </div>

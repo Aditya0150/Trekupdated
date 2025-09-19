@@ -61,10 +61,10 @@ export default function StickyTrekStack({ treks, onBook }: StickyTrekStackProps)
             trek={trek}
             onBook={onBook}
             className="shadow-2xl"
-            // Ensure full width within the stack and a clean background
+            // Make stacked cards slightly narrower for a compact look
             style={{
-              width: "100%",
-              maxWidth: "100%",
+              width: "92%",
+              maxWidth: "720px",
               backgroundColor: "white",
             }}
           />
