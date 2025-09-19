@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "@/hooks/use-auth";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import TextScroll from "@/components/TextScroll";
 import TreksSection from "@/components/TreksSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
@@ -42,6 +43,7 @@ export default function Landing() {
 
       <Navbar />
       <HeroSection />
+      <TextScroll />
       <TreksSection />
       <AboutSection />
       <ContactSection />
