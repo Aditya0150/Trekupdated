@@ -8,6 +8,8 @@ import { ArrowLeft, MapPinned, MapPin, Calendar, Mountain, IndianRupee, ArrowRig
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import BookingDialog from "@/components/BookingDialog";
+import RichDayCard from "@/components/itinerary/RichDayCard";
+import SimpleDayCard from "@/components/itinerary/SimpleDayCard";
 
 export default function ItineraryPage() {
   const { id } = useParams() as { id: string };
@@ -17,16 +19,6 @@ export default function ItineraryPage() {
   const itinerary = useQuery(api.itineraries.getByTrekId, trek?._id ? { trekId: trek._id } : "skip" as any);
 
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-
-  // Add animation variants for cards and bullet rows
-  const dayCardVariants = {
-    hidden: { opacity: 0, y: 12, scale: 0.98 },
-    visible: { opacity: 1, y: 0, scale: 1 },
-  };
-  const bulletVariants = {
-    hidden: { opacity: 0, x: -6 },
-    visible: { opacity: 1, x: 0 },
-  };
 
   // Add rich itinerary data for Valley of Flowers with icons and bullets
   const richItineraryData = [
@@ -587,131 +579,18 @@ export default function ItineraryPage() {
           <div className="space-y-5">
             {useRich ? (
               richData.map((item, idx) => (
-                <motion.div
-                  key={item.day}
-                  variants={dayCardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  whileHover={{ y: -2 }}
-                >
-                  <Card className="group relative overflow-hidden rounded-2xl border border-orange-200/60 bg-gradient-to-br from-orange-50/60 to-white shadow-sm hover:shadow-md transition-shadow">
-                    <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-orange-100/60" />
-                    <CardContent className="p-5 md:p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-b from-orange-500 to-red-600 text-white flex items-center justify-center font-extrabold shadow-md ring-2 ring-white/70 shrink-0">
-                          {item.day}
-                        </div>
-                        <div className="min-w-0 w-full">
-                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                            <div>
-                              <h3 className="text-lg md:text-xl font-semibold text-foreground">{item.title}</h3>
-                              {item.subtitle && (
-                                <p className="text-xs text-muted-foreground mt-0.5">{item.subtitle}</p>
-                              )}
-                            </div>
-                            <div className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-700 border border-orange-100 px-3 py-1 text-xs font-medium">
-                              {trek.location}
-                            </div>
-                          </div>
-
-                          {item.details.length > 0 && (
-                            <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                              {item.details.map((d, i) => (
-                                <div
-                                  key={i}
-                                  className="flex items-center gap-2 rounded-lg border border-orange-100 bg-orange-50/50 px-3 py-2"
-                                >
-                                  <span>{d.icon}</span>
-                                  <div className="min-w-0">
-                                    <div className="text-[11px] uppercase tracking-wide text-muted-foreground">
-                                      {d.label}
-                                    </div>
-                                    <div className="text-sm font-medium text-foreground truncate">{d.value}</div>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-
-                          {item.bullets.length > 0 && (
-                            <ul className="mt-3 space-y-2">
-                              {item.bullets.map((b, i) => (
-                                <motion.li
-                                  key={i}
-                                  className="flex items-start gap-2 text-sm leading-relaxed"
-                                  variants={bulletVariants}
-                                  initial="hidden"
-                                  whileInView="visible"
-                                  viewport={{ once: true, amount: 0.6 }}
-                                  transition={{ duration: 0.35, delay: 0.05 + i * 0.03 }}
-                                >
-                                  <span className="mt-1 text-orange-600">
-                                    <ArrowRight className="h-4 w-4" />
-                                  </span>
-                                  <span className="flex-1 bg-orange-50/50 rounded-lg px-3 py-2 border border-orange-100 text-muted-foreground">
-                                    {b}
-                                  </span>
-                                </motion.li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <RichDayCard key={item.day} item={item as any} location={trek.location} delay={idx * 0.05} />
               ))
             ) : (
               (itinerary?.days ?? []).map((day, idx) => (
-                <motion.div
+                <SimpleDayCard
                   key={day.dayNumber}
-                  variants={dayCardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  whileHover={{ y: -2 }}
-                >
-                  <Card className="group relative overflow-hidden rounded-2xl border border-orange-200/60 bg-gradient-to-br from-orange-50/60 to-white shadow-sm hover:shadow-md transition-shadow">
-                    <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-orange-100/60 blur-0" />
-                    <CardContent className="p-5 md:p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-b from-orange-500 to-red-600 text-white flex items-center justify-center font-extrabold shadow-md ring-2 ring-white/70 shrink-0">
-                          {day.dayNumber}
-                        </div>
-                        <div className="min-w-0 w-full">
-                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                            <h3 className="text-lg md:text-xl font-semibold text-foreground">
-                              {day.title}
-                            </h3>
-                            <div className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-700 border border-orange-100 px-3 py-1 text-xs font-medium">
-                              {trek.location}
-                            </div>
-                          </div>
-                          <ul className="mt-3 space-y-2">
-                            <motion.li
-                              className="flex items-start gap-2 text-sm leading-relaxed"
-                              variants={bulletVariants}
-                              initial="hidden"
-                              whileInView="visible"
-                              viewport={{ once: true, amount: 0.6 }}
-                              transition={{ duration: 0.35, delay: 0.05 }}
-                            >
-                              <span className="mt-1 text-orange-600">
-                                <ArrowRight className="h-4 w-4" />
-                              </span>
-                              <span className="flex-1 bg-orange-50/50 rounded-lg px-3 py-2 border border-orange-100 text-muted-foreground">
-                                {day.description}
-                              </span>
-                            </motion.li>
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                  dayNumber={day.dayNumber}
+                  title={day.title}
+                  description={day.description}
+                  location={trek.location}
+                  delay={idx * 0.05}
+                />
               ))
             )}
 

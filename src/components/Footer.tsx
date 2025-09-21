@@ -13,7 +13,6 @@ export default function Footer() {
     ],
     "Popular Treks": [
       { name: "Valley of Flowers", href: "#treks" },
-      { name: "Kedarnath Trek", href: "#treks" },
       { name: "Roopkund Trek", href: "#treks" },
       { name: "Har Ki Dun", href: "#treks" },
     ],
