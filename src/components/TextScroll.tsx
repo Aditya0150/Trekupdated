@@ -88,7 +88,7 @@ export default function TextScroll({
   return (
     <section
       aria-label="Scroll Text Animation"
-      className={cn("relative bg-[oklch(0.98_0.01_85)]", sectionClassName)}
+      className={cn("relative bg-[oklch(0.98_0.01_85)] overflow-x-hidden", sectionClassName)}
     >
       <div
         ref={targetRef}
@@ -98,7 +98,7 @@ export default function TextScroll({
         )}
       >
         <div
-          className="text-center"
+          className="text-center overflow-hidden"
           style={{ perspective: "600px" }}
         >
           <div className="mb-4 text-xs uppercase tracking-widest text-muted-foreground">
