@@ -1,4 +1,4 @@
-import { Mountain, Facebook, Instagram, Twitter, Mail } from "lucide-react";
+import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Footer() {

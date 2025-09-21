@@ -5,12 +5,13 @@ import { motion } from "framer-motion";
 import { MapPin, Clock, TrendingUp, Users } from "lucide-react";
 import { Doc } from "@/convex/_generated/dataModel";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import type { CSSProperties } from "react";
 
 interface TrekCardProps {
   trek: Doc<"treks">;
   onBook: (trek: Doc<"treks">) => void;
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 export default function TrekCard({ trek, onBook, className, style }: TrekCardProps) {

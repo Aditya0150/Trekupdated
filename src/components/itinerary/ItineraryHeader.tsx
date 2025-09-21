@@ -1,6 +1,5 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Mountain, Calendar, IndianRupee } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import type { Doc } from "@/convex/_generated/dataModel";
 
 export default function ItineraryHeader({ trek }: { trek: Doc<"treks"> }) {

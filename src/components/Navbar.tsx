@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/hooks/use-auth";
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";

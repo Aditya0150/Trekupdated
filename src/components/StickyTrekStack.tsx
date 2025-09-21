@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import type { ReactNode } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { Doc } from "@/convex/_generated/dataModel";
 import TrekCard from "./TrekCard";
@@ -17,7 +18,7 @@ function StickyItem({
   i: number;
   total: number;
   progress: MotionValue<number>;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   // Segment the scroll range per card so each shows fully before the next begins
   const step = 1 / total;

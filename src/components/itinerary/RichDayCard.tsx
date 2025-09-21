@@ -1,9 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import type { ReactNode } from "react";
 
 type Detail = {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   value: string;
 };
