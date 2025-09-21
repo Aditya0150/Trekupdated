@@ -19,13 +19,17 @@ function StickyItem({
   progress: MotionValue<number>;
   children: React.ReactNode;
 }) {
-  // Each card scales down to a target as you scroll further
-  const targetScale = Math.max(0.5, 1 - (total - i - 1) * 0.08);
-  const rangeStart = i * 0.2;
-  const rangeEnd = 1;
+  // Segment the scroll range per card so each shows fully before the next begins
+  const step = 1 / total;
+  const rangeStart = i * step;
+  const rangeEnd = (i + 1) * step;
 
+  // Keep scale subtle; ensure each card remains readable
+  const targetScale = Math.max(0.88, 1 - (i + 1) * 0.04);
   const scale = useTransform(progress, [rangeStart, rangeEnd], [1, targetScale]);
-  const y = useTransform(progress, [rangeStart, rangeEnd], [0, -i * 24]);
+
+  // Slight vertical shift only within its segment
+  const y = useTransform(progress, [rangeStart, rangeEnd], [0, -16]);
 
   return (
     <motion.div
@@ -47,28 +51,30 @@ export default function StickyTrekStack({ treks, onBook }: StickyTrekStackProps)
   return (
     <main
       ref={containerRef}
-      className="relative mx-auto w-full max-w-4xl py-[35vh]"
+      className="relative mx-auto w-full max-w-4xl py-[20vh]"
       aria-label="Stacked trek cards"
     >
       {treks.map((trek, i) => (
-        <StickyItem
-          key={trek._id}
-          i={i}
-          total={treks.length}
-          progress={scrollYProgress}
-        >
-          <TrekCard
-            trek={trek}
-            onBook={onBook}
-            className="shadow-2xl mx-auto"
-            // Make stacked cards slightly narrower for a compact look
-            style={{
-              width: "92%",
-              maxWidth: "720px",
-              backgroundColor: "white",
-            }}
-          />
-        </StickyItem>
+        // Add per-card scroll space so the full details are visible before next card advances
+        <div key={trek._id} className="relative h-[120vh]">
+          <StickyItem
+            i={i}
+            total={treks.length}
+            progress={scrollYProgress}
+          >
+            <TrekCard
+              trek={trek}
+              onBook={onBook}
+              className="shadow-2xl mx-auto"
+              // Make stacked cards slightly narrower for a compact look
+              style={{
+                width: "92%",
+                maxWidth: "720px",
+                backgroundColor: "white",
+              }}
+            />
+          </StickyItem>
+        </div>
       ))}
     </main>
   );
