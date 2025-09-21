@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { motion } from "framer-motion";
-import { ArrowLeft, MapPinned, Route, Clock, Home, TreePine, Mountain } from "lucide-react";
+import { ArrowLeft, MapPinned, MapPin, Route, Clock, Home, TreePine, Mountain } from "lucide-react";
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import BookingDialog from "@/components/BookingDialog";
