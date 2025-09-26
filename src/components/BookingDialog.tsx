@@ -35,6 +35,10 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
     message: "",
   });
 
+  // Accessible IDs for modal labelling
+  const titleId = `booking-${trek._id}-title`;
+  const descId = `booking-${trek._id}-description`;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -73,7 +77,13 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
+      <DialogContent
+        className="max-w-md max-h-[90vh] overflow-y-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descId}
+      >
         <motion.div
           key={isOpen ? "open" : "closed"}
           initial={{ opacity: 0, y: 12, scale: 0.98 }}
@@ -81,8 +91,8 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <DialogHeader>
-            <DialogTitle className="text-xl font-bold">Book Your Adventure</DialogTitle>
-            <DialogDescription>
+            <DialogTitle id={titleId} className="text-xl font-bold">Book Your Adventure</DialogTitle>
+            <DialogDescription id={descId}>
               Reserve your spot for <span className="font-semibold text-orange-600">{trek.name}</span>
             </DialogDescription>
           </DialogHeader>
@@ -93,6 +103,7 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25, delay: 0.05, ease: "easeOut" }}
+            aria-busy={isLoading}
           >
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -103,6 +114,7 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
                   onChange={(e) => handleInputChange("name", e.target.value)}
                   required
                   disabled={isLoading}
+                  autoFocus
                 />
               </div>
               <div>
@@ -201,6 +213,7 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
               <Button
                 type="submit"
                 disabled={isLoading}
+                aria-busy={isLoading}
                 className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
               >
                 {isLoading ? (
