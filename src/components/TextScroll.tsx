@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { cn } from "@/lib/utils";
 
 type CharacterProps = {
   char: string;

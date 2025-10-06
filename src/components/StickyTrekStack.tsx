@@ -1,7 +1,7 @@
-import { useRef } from "react";
-import type { ReactNode } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { Doc } from "@/convex/_generated/dataModel";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import type { ReactNode } from "react";
+import { useRef } from "react";
 import TrekCard from "./TrekCard";
 
 type StickyTrekStackProps = {
@@ -52,12 +52,12 @@ export default function StickyTrekStack({ treks, onBook }: StickyTrekStackProps)
   return (
     <main
       ref={containerRef}
-      className="relative mx-auto w-full max-w-4xl py-[20vh]"
+      className="relative mx-auto w-full max-w-4xl py-[18vh]"
       aria-label="Stacked trek cards"
     >
       {treks.map((trek, i) => (
         // Add per-card scroll space so the full details are visible before next card advances
-        <div key={trek._id} className="relative h-[120vh]">
+        <div key={trek._id} className={"relative " + (i === treks.length - 1 ? "h-[100vh]" : "h-[120vh]")}>
           <StickyItem
             i={i}
             total={treks.length}
@@ -69,8 +69,8 @@ export default function StickyTrekStack({ treks, onBook }: StickyTrekStackProps)
               className="shadow-2xl mx-auto"
               // Make stacked cards slightly narrower for a compact look
               style={{
-                width: "92%",
-                maxWidth: "720px",
+                width: "94%",
+                maxWidth: "700px",
                 backgroundColor: "white",
               }}
             />

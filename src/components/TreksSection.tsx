@@ -1,12 +1,12 @@
-import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import TrekCard from "./TrekCard";
-import BookingDialog from "./BookingDialog";
-import { motion } from "framer-motion";
-import { useState } from "react";
 import { Doc } from "@/convex/_generated/dataModel";
+import { useQuery } from "convex/react";
+import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
+import { useState } from "react";
+import BookingDialog from "./BookingDialog";
 import StickyTrekStack from "./StickyTrekStack";
+import TrekCard from "./TrekCard";
 
 export default function TreksSection() {
   const treks = useQuery(api.treks.getAllTreks);
@@ -27,16 +27,16 @@ export default function TreksSection() {
   }
 
   return (
-    <section id="treks" className="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="treks" className="py-16 bg-[oklch(0.98_0.01_85)]">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-4"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 md:mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3">
             Popular <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-600">Treks</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">

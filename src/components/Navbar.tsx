@@ -1,12 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Smooth scroll to section function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    setIsMenuOpen(false); // Close mobile menu after navigation
+  };
 
   // Close menu on escape and lock body scroll when menu is open
   useEffect(() => {
@@ -30,39 +42,51 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 bg-transparent"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
+      <div className="max-w-7xl mx-auto px-0">
+        <div className="flex items-center justify-between h-20 sm:h-24">
+          {/* Logo - Positioned in absolute corner */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center cursor-pointer -ml-4 sm:-ml-6 lg:-ml-8"
+            className="absolute top-2 left-4 cursor-pointer z-10"
             onClick={() => navigate("/")}
           >
             <img
               src="https://harmless-tapir-303.convex.cloud/api/storage/3e4ba243-1be0-424c-a7c9-04f4caccbfef"
               alt="Off Beat Himalaya Logo"
-              className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+              className="h-20 w-20 lg:h-24 lg:w-24 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
             />
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <a href="#home" className="text-white hover:text-orange-300 transition-colors">
+          <div className="hidden md:flex items-center gap-2">
+            <button
+              className="px-4 py-2 rounded-full bg-white/90 text-gray-900 border border-black/10 hover:bg-white shadow-sm transition-colors duration-200"
+              onClick={() => scrollToSection('#home')}
+            >
               Home
-            </a>
-            <a href="#treks" className="text-white hover:text-orange-300 transition-colors">
+            </button>
+            <button
+              className="px-4 py-2 rounded-full bg-white/90 text-gray-900 border border-black/10 hover:bg-white shadow-sm transition-colors duration-200"
+              onClick={() => scrollToSection('#treks')}
+            >
               Treks
-            </a>
-            <a href="#about" className="text-white hover:text-orange-300 transition-colors">
+            </button>
+            <button
+              className="px-4 py-2 rounded-full bg-white/90 text-gray-900 border border-black/10 hover:bg-white shadow-sm transition-colors duration-200"
+              onClick={() => scrollToSection('#about')}
+            >
               About
-            </a>
-            <a href="#contact" className="text-white hover:text-orange-300 transition-colors">
+            </button>
+            <button
+              className="px-4 py-2 rounded-full bg-white/90 text-gray-900 border border-black/10 hover:bg-white shadow-sm transition-colors duration-200"
+              onClick={() => scrollToSection('#contact')}
+            >
               Contact
-            </a>
+            </button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden pr-3">
             <Button
               variant="ghost"
               size="icon"
@@ -86,35 +110,31 @@ export default function Navbar() {
             className="md:hidden bg-black/50 backdrop-blur-md rounded-lg mt-2 p-4"
             id="mobile-menu"
           >
-            <div className="flex flex-col space-y-4">
-              <a
-                href="#home"
-                className="text-white hover:text-orange-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+            <div className="flex flex-col space-y-3">
+              <button
+                className="px-4 py-2 rounded-full bg-white/90 text-gray-900 border border-black/10 hover:bg-white shadow-sm transition-colors duration-200 text-left"
+                onClick={() => scrollToSection('#home')}
               >
                 Home
-              </a>
-              <a
-                href="#treks"
-                className="text-white hover:text-orange-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button
+                className="px-4 py-2 rounded-full bg-white/90 text-gray-900 border border-black/10 hover:bg-white shadow-sm transition-colors duration-200 text-left"
+                onClick={() => scrollToSection('#treks')}
               >
                 Treks
-              </a>
-              <a
-                href="#about"
-                className="text-white hover:text-orange-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button
+                className="px-4 py-2 rounded-full bg-white/90 text-gray-900 border border-black/10 hover:bg-white shadow-sm transition-colors duration-200 text-left"
+                onClick={() => scrollToSection('#about')}
               >
                 About
-              </a>
-              <a
-                href="#contact"
-                className="text-white hover:text-orange-300 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button
+                className="px-4 py-2 rounded-full bg-white/90 text-gray-900 border border-black/10 hover:bg-white shadow-sm transition-colors duration-200 text-left"
+                onClick={() => scrollToSection('#contact')}
               >
                 Contact
-              </a>
+              </button>
             </div>
           </motion.div>
         )}

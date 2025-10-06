@@ -14,9 +14,8 @@ export default function HeroSection() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="https://player.vimeo.com/external/342333493.sd.mp4?s=47c9bb4c4b1d413c88d803b71c8fc50c7b1b1a6d&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
+          <source src="/DSC_4495.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Content */}
@@ -25,7 +24,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 tracking-tight"
+          className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 tracking-tight"
         >
           Explore the
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
@@ -33,14 +32,6 @@ export default function HeroSection() {
           </span>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg md:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto"
-        >
-          Discover the true heart of the Himalayas with unforgettable trekking adventures through pristine landscapes and ancient cultures.
-        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -58,25 +49,6 @@ export default function HeroSection() {
           </Button>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-white/70 rounded-full mt-2"
-            />
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

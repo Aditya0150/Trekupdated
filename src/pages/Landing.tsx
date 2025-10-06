@@ -1,12 +1,11 @@
-import { motion } from "framer-motion";
-import { useAuth } from "@/hooks/use-auth";
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import TextScroll from "@/components/TextScroll";
-import TreksSection from "@/components/TreksSection";
 import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import Navbar from "@/components/Navbar";
+import TreksSection from "@/components/TreksSection";
+import { useAuth } from "@/hooks/use-auth";
+import { motion } from "framer-motion";
 
 export default function Landing() {
   const { isLoading } = useAuth();
@@ -28,22 +27,24 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen relative">
-      {/* Background image layer */}
+      {/* Background video layer */}
       <div
         aria-hidden
         className="fixed inset-0 -z-10"
       >
-        <img
-          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&h=1080&fit=crop"
-          alt=""
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/30" />
+        >
+          <source src="/DSC_4495.mp4" type="video/mp4" />
+        </video>
       </div>
 
       <Navbar />
       <HeroSection />
-      <TextScroll />
       <TreksSection />
       <AboutSection />
       <ContactSection />
