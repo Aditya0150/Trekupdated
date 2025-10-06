@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { motion } from "framer-motion";
-import { ArrowLeft, MapPinned, MapPin, Route, Clock, Home, TreePine, Mountain } from "lucide-react";
+import { ArrowLeft, MapPin, Route, Clock, Home, TreePine, Mountain } from "lucide-react";
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
 import BookingDialog from "@/components/BookingDialog";
@@ -464,7 +464,7 @@ export default function ItineraryPage() {
             Back
           </Button>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <MapPinned className="h-4 w-4" />
+            <MapPin className="h-4 w-4" />
             {trek.location}
           </div>
         </div>
