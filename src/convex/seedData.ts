@@ -11,7 +11,7 @@ export const seedTreks = mutation({
         duration: "6 days",
         difficulty: "Moderate",
         price: 15000,
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/1ef5d76b-4648-4297-a0bf-6f4f64f41c4a",
+        image: "/Valley of Flower.png",
         featured: true,
         location: "Uttarakhand, India",
         highlights: ["UNESCO World Heritage Site", "Alpine Flowers", "Himalayan Views", "Photography Paradise"]
@@ -24,7 +24,7 @@ export const seedTreks = mutation({
         duration: "8 days",
         difficulty: "Challenging",
         price: 18000,
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/d2d066ba-483a-4535-8371-b4c2d848c21a",
+        image: "/Roopkund.jpg",
         featured: true,
         location: "Uttarakhand, India",
         highlights: ["Mystery Lake", "Ancient Skeletons", "High Altitude", "Adventure Challenge"]
@@ -36,7 +36,7 @@ export const seedTreks = mutation({
         duration: "7 days",
         difficulty: "Easy to Moderate",
         price: 14000,
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/e0af7db7-f107-4599-a953-902df559cd86",
+        image: "/Har Ki Dun.png",
         featured: false,
         location: "Uttarakhand, India",
         highlights: ["Valley of Gods", "Ancient Villages", "Swargarohini Views", "Cultural Experience"]
@@ -47,23 +47,23 @@ export const seedTreks = mutation({
         altitude: "4,265 m",
         duration: "6 days",
         difficulty: "Moderate",
-        price: 16000,
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/1fe4d1c9-1b59-452d-a0f0-a70bd6fb36e2",
+        price: 6999,
+        image: "/Kuari Pass.png",
         featured: false,
         location: "Uttarakhand, India",
         highlights: ["Panoramic Views", "Nanda Devi", "Dronagiri Peak", "Mountain Photography"]
       },
       {
-        name: "Kedarkantha",
-        description: "Embark on the Kedarkantha winter trek, perfect for first-time trekkers. With snow-covered forests and 360-degree summit views, this adventure suits all skill levels.",
-        altitude: "3,800 m",
+        name: "Auli and Niti Winter Expedition",
+        description: "Auli is known as the Mini Switzerland of India and offers one of Asia's longest ski slopes with breathtaking views of Nanda Devi and other Himalayan peaks. On this 4-night, 5-day winter expedition, you not only experience skiing and snow adventures in Auli but also travel deep into the snow-clad Niti Valley, one of India's last villages near the Tibet border. Niti, at 3,600 meters, is home to the ancient Bhotiya tribe, preserving centuries-old Indo-Tibetan culture and traditions. Driving through frozen rivers, pine forests, and high-altitude roads, you'll witness landscapes that feel untouched and magical. This journey is not just about adventure but also about exploring heritage, culture, and the hidden beauty of Uttarakhand's winter wonderland.",
+        altitude: "3,600 m",
         duration: "5 days",
-        difficulty: "Easy",
-        price: 11000,
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/858a3d3f-128a-47c8-8c7d-a3235ebb537c",
-        featured: false,
+        difficulty: "Moderate",
+        price: 18500,
+        image: "/Niti.PNG",
+        featured: true,
         location: "Uttarakhand, India",
-        highlights: ["Winter Trek", "Snow Forests", "360° Views", "Beginner Friendly"]
+        highlights: ["Skiing in Auli", "Niti Valley Exploration", "Bhotiya Culture", "Frozen Landscapes", "Himalayan Wildlife"]
       }
     ];
 
@@ -91,32 +91,63 @@ export const seedItineraries = mutation({
 
       if (existing) continue;
 
-      const days = [
-        {
-          dayNumber: 1,
-          title: `Arrival & Briefing`,
-          description:
-            `Arrive at base. Meet guides, safety briefing, and acclimatization walk around ${trek.location}.`,
-        },
-        {
-          dayNumber: 2,
-          title: `Trail Start`,
-          description:
-            `Start trekking. Gentle ascent through forests/meadows. Overnight in camp/guesthouse.`,
-        },
-        {
-          dayNumber: 3,
-          title: `Summit/Primary Viewpoint`,
-          description:
-            `Reach the key viewpoint/spot for ${trek.name}. Panoramic Himalayan vistas and photography.`,
-        },
-        {
-          dayNumber: 4,
-          title: `Return & Departure`,
-          description:
-            `Descend back to base. Debrief, certificates, and departure.`,
-        },
-      ];
+      let days;
+      if (trek.name === "Auli and Niti Winter Expedition") {
+        days = [
+          {
+            dayNumber: 1,
+            title: "Rishikesh to Auli",
+            description: "Will cover Panch Prayag and Dhari Devi Temple. It will be 7-8 Hr Drive.",
+          },
+          {
+            dayNumber: 2,
+            title: "Auli Explore and Winter Acclimatisation",
+            description: "Auli Explore and winter acclimatisation. Hike to Gorson round way 6 Km. Witness the Majestic Nanda Devi with the best view of grand peaks like Dronagiri, Hathi Ghoda, Brahmal, Neelgiri and many more.",
+          },
+          {
+            dayNumber: 3,
+            title: "Move to Niti Village Explore Malari, Sumna, Tapovan Day",
+            description: "Explore Malari, Sumna, Tapovan. Will travel in heavy SUV and 4x4 vehicle. We will explore the trans Himalayan region and frozen waterfalls and river beds. Will spot Himalayan Wildlife such as That, Blue sheep and Snow leopard. Then we will go to Sumna and witness Grand Canyon of India. Visit View point for place from where lord Hanuman lifted Sanjeevni for Lord Lakshman during epic battle of Ramayana.",
+          },
+          {
+            dayNumber: 4,
+            title: "Niti Village to Niti Mahadev then to Damarsien stay at NITI / GHAMSALI",
+            description: "We will visit frozen Shiva temple. Hike up to Payaar it will be 4 km hike round way. A wide valley as Janskar will be sight return to Auli.",
+          },
+          {
+            dayNumber: 5,
+            title: "Departure",
+            description: "Travel to home with lots of memories.",
+          },
+        ];
+      } else {
+        days = [
+          {
+            dayNumber: 1,
+            title: `Arrival & Briefing`,
+            description:
+              `Arrive at base. Meet guides, safety briefing, and acclimatization walk around ${trek.location}.`,
+          },
+          {
+            dayNumber: 2,
+            title: `Trail Start`,
+            description:
+              `Start trekking. Gentle ascent through forests/meadows. Overnight in camp/guesthouse.`,
+          },
+          {
+            dayNumber: 3,
+            title: `Summit/Primary Viewpoint`,
+            description:
+              `Reach the key viewpoint/spot for ${trek.name}. Panoramic Himalayan vistas and photography.`,
+          },
+          {
+            dayNumber: 4,
+            title: `Return & Departure`,
+            description:
+              `Descend back to base. Debrief, certificates, and departure.`,
+          },
+        ];
+      }
 
       await ctx.db.insert("itineraries", { trekId: trek._id, days });
       count++;

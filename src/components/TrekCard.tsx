@@ -60,7 +60,7 @@ export default function TrekCard({ trek, onBook, className, style }: TrekCardPro
 
         <CardContent className="p-4 md:p-5 flex-grow">
           <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{trek.name}</h3>
-          
+
           <div className="flex items-center gap-3 md:gap-4 text-xs sm:text-sm text-gray-600 mb-3">
             <div className="flex items-center gap-1">
               <MapPin className="h-4 w-4" />
@@ -95,7 +95,7 @@ export default function TrekCard({ trek, onBook, className, style }: TrekCardPro
             <Button
               size="sm"
               onClick={() => onBook(trek)}
-              className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
+              className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-4 py-2"
             >
               <Users className="mr-2 h-4 w-4" />
               Book Now

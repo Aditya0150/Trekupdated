@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Valley of Flowers",
+    "description": "Embark on a mesmerizing journey through the Valley of Flowers, where vibrant alpine blooms create a breathtaking natural tapestry set against towering Himalayan peaks. This UNESCO World Heritage site offers an unforgettable experience of nature's finest artistry.",
+    "altitude": "3,658 m",
+    "duration": "6 days",
+    "difficulty": "Moderate",
+    "price": 15000,
+    "image": "/Valley of Flower.png",
+    "featured": true,
+    "location": "Uttarakhand, India",
+    "highlights": ["UNESCO World Heritage Site", "Alpine Flowers", "Himalayan Views", "Photography Paradise"]
+  },
+  {
+    "name": "Roopkund Trek",
+    "description": "A high-altitude Himalayan trek that takes you to Roopkund, a glacial lake shrouded in mystery and legends. Famous for its ancient human skeletons, this trail offers breathtaking views of snow-capped peaks and alpine meadows.",
+    "altitude": "3,892 m",
+    "duration": "8 days",
+    "difficulty": "Challenging",
+    "price": 18000,
+    "image": "/Roopkund.jpg",
+    "featured": true,
+    "location": "Uttarakhand, India",
+    "highlights": ["Mystery Lake", "Ancient Skeletons", "High Altitude", "Adventure Challenge"]
+  },
+  {
+    "name": "Har Ki Dun",
+    "description": "Discover the enchanting Valley of Gods, where lush meadows, dense forests, and ancient villages unfold against the backdrop of the majestic Swargarohini peaks.",
+    "altitude": "3,566 m",
+    "duration": "7 days",
+    "difficulty": "Easy to Moderate",
+    "price": 14000,
+    "image": "/Har Ki Dun.png",
+    "featured": false,
+    "location": "Uttarakhand, India",
+    "highlights": ["Valley of Gods", "Ancient Villages", "Swargarohini Views", "Cultural Experience"]
+  },
+  {
+    "name": "Kuari Pass",
+    "description": "Experience the famed Kuari Pass trek, offering sweeping panoramic views of India's most iconic peaks, including Nanda Devi and Dronagiri.",
+    "altitude": "4,265 m",
+    "duration": "6 days",
+    "difficulty": "Moderate",
+    "price": 6999,
+    "image": "/Kuari Pass.png",
+    "featured": false,
+    "location": "Uttarakhand, India",
+    "highlights": ["Panoramic Views", "Nanda Devi", "Dronagiri Peak", "Mountain Photography"]
+  },
+  {
+    "name": "Auli and Niti Winter Expedition",
+    "description": "Auli is known as the Mini Switzerland of India and offers one of Asia's longest ski slopes with breathtaking views of Nanda Devi and other Himalayan peaks. On this 4-night, 5-day winter expedition, you not only experience skiing and snow adventures in Auli but also travel deep into the snow-clad Niti Valley, one of India's last villages near the Tibet border. Niti, at 3,600 meters, is home to the ancient Bhotiya tribe, preserving centuries-old Indo-Tibetan culture and traditions. Driving through frozen rivers, pine forests, and high-altitude roads, you'll witness landscapes that feel untouched and magical. This journey is not just about adventure but also about exploring heritage, culture, and the hidden beauty of Uttarakhand's winter wonderland.",
+    "altitude": "3,600 m",
+    "duration": "5 days",
+    "difficulty": "Moderate",
+    "price": 18500,
+    "image": "/Niti.PNG",
+    "featured": true,
+    "location": "Uttarakhand, India",
+    "highlights": ["Skiing in Auli", "Niti Valley Exploration", "Bhotiya Culture", "Frozen Landscapes", "Himalayan Wildlife"]
+  },
+  {
+    "name": "Kedarkantha",
+    "description": "Kedarkantha is a popular winter trek in Uttarakhand, known for its stunning snow-covered landscapes and the opportunity to summit a peak. This trek offers breathtaking views of the Himalayan ranges and is ideal for beginners looking to experience winter trekking.",
+    "altitude": "3,812 m",
+    "duration": "5 days",
+    "difficulty": "Easy to Moderate",
+    "price": 4000,
+    "image": "/Kedarkantha.jpg",
+    "featured": false,
+    "location": "Uttarakhand, India",
+    "highlights": ["Winter Trek", "Snowy Landscapes", "Himalayan Views", "Beginner Friendly"]
+  }
+]

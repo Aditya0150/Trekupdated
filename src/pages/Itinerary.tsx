@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { api } from "@/convex/_generated/api";
-import { useQuery } from "convex/react";
+import { Doc, Id } from "@/convex/_generated/dataModel";
 import { motion } from "framer-motion";
 import { ArrowLeft, MapPin, Route, Clock, Home, TreePine, Mountain } from "lucide-react";
 import { useNavigate, useParams } from "react-router";
@@ -12,13 +11,23 @@ import ItineraryDays from "@/components/itinerary/ItineraryDays";
 import Inclusions from "@/components/itinerary/Inclusions";
 import Essentials from "@/components/itinerary/Essentials";
 import PriceCard from "@/components/itinerary/PriceCard";
+import treksData from "../data/treks.json";
+import itinerariesData from "../data/itineraries.json";
+
+const allTreks: Doc<"treks">[] = treksData.map((trek, index) => ({
+  ...trek,
+  _id: `trek-${index}` as any,
+  _creationTime: Date.now() + index,
+}));
 
 export default function ItineraryPage() {
   const { id } = useParams() as { id: string };
   const navigate = useNavigate();
 
-  const trek = useQuery(api.treks.getTrekById, id ? { id: id as any } : "skip" as any);
-  const itinerary = useQuery(api.itineraries.getByTrekId, trek?._id ? { trekId: trek._id } : "skip" as any);
+  const trek = allTreks.find(t => t._id === id);
+  const itinerary = itinerariesData.find(i => i.trekName === trek?.name);
+
+  const trekData = trek;
 
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
@@ -71,7 +80,7 @@ export default function ItineraryPage() {
       title: "Ghangaria → Poolna → Joshimath",
       subtitle: "Return Journey",
       details: [
-        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "9 km" },
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Trek", value: "9 km (~5 hrs)" },
         { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Drive", value: "1.5 hours" },
         { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Joshimath" },
       ],
@@ -134,7 +143,7 @@ export default function ItineraryPage() {
       subtitle: "Summit Day",
       details: [
         { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Summit", value: "12,500 ft" },
-        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Total Trek", value: "12 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "12 km" },
       ],
       bullets: [
         "Early morning summit climb",
@@ -414,37 +423,106 @@ export default function ItineraryPage() {
     },
   ];
 
+  // Add: Rich itinerary for Auli and Niti Winter Expedition (5 days)
+  const richAuliNitiData = [
+    {
+      day: 1,
+      title: "Rishikesh to Auli",
+      subtitle: "Journey to the Ski Resort",
+      details: [
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Distance", value: "280 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "7–8 hours" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Auli" },
+      ],
+      bullets: [
+        "Scenic drive through Panch Prayag",
+        "Visit Dhari Devi Temple",
+        "Arrive at Auli by evening",
+      ],
+    },
+    {
+      day: 2,
+      title: "Auli Exploration & Winter Acclimatisation",
+      subtitle: "Discover the Mini Switzerland",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Hike", value: "6 km round trip" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "4–5 hours" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Auli" },
+      ],
+      bullets: [
+        "Hike to Gorson for panoramic views",
+        "Witness majestic Nanda Devi and peaks",
+        "Winter acclimatisation activities",
+      ],
+    },
+    {
+      day: 3,
+      title: "Auli to Niti Valley Exploration",
+      subtitle: "Into the Trans-Himalayan Region",
+      details: [
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Drive", value: "120 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "6–8 hours" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Niti Village" },
+      ],
+      bullets: [
+        "Explore Malari, Sumna, and Tapovan",
+        "Spot Himalayan wildlife (Thar, Blue sheep, Snow leopard)",
+        "Visit Sumna viewpoint and frozen landscapes",
+      ],
+    },
+    {
+      day: 4,
+      title: "Niti Village Exploration",
+      subtitle: "Cultural Heritage & Scenic Hikes",
+      details: [
+        { icon: <Mountain className="h-4 w-4 text-orange-600" />, label: "Hike", value: "4 km round trip" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "3–4 hours" },
+        { icon: <Home className="h-4 w-4 text-orange-600" />, label: "Stay", value: "Niti/Ghamsali" },
+      ],
+      bullets: [
+        "Visit frozen Niti Mahadev temple",
+        "Hike to Payaar for valley views",
+        "Experience Bhotiya culture",
+      ],
+    },
+    {
+      day: 5,
+      title: "Niti to Rishikesh",
+      subtitle: "Journey Ends",
+      details: [
+        { icon: <Route className="h-4 w-4 text-orange-600" />, label: "Distance", value: "280 km" },
+        { icon: <Clock className="h-4 w-4 text-orange-600" />, label: "Duration", value: "7–8 hours" },
+      ],
+      bullets: [
+        "Return drive through scenic routes",
+        "Memories of winter wonderland",
+      ],
+    },
+  ];
+
   // Determine if we should use a rich itinerary and select the correct data
   const useRich =
-    trek?.name === "Valley of Flowers" ||
-    trek?.name === "Kedarkantha" ||
-    trek?.name === "Har Ki Dun" ||
-    trek?.name === "Kuari Pass" ||
-    trek?.name === "Roopkund Trek";
+    trekData?.name === "Valley of Flowers" ||
+    trekData?.name === "Kedarkantha" ||
+    trekData?.name === "Har Ki Dun" ||
+    trekData?.name === "Kuari Pass" ||
+    trekData?.name === "Roopkund Trek" ||
+    trekData?.name === "Auli and Niti Winter Expedition";
 
   const richData =
-    trek?.name === "Kedarkantha"
+    trekData?.name === "Kedarkantha"
       ? richKedarkanthaData
-      : trek?.name === "Har Ki Dun"
+      : trekData?.name === "Har Ki Dun"
       ? richHarKiDunData
-      : trek?.name === "Kuari Pass"
+      : trekData?.name === "Kuari Pass"
       ? richKuariPassData
-      : trek?.name === "Roopkund Trek"
+      : trekData?.name === "Roopkund Trek"
       ? richRoopkundData
+      : trekData?.name === "Auli and Niti Winter Expedition"
+      ? richAuliNitiData
       : richItineraryData;
 
-  if (trek === undefined || itinerary === undefined) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="flex items-center gap-2 text-muted-foreground">
-          <div className="w-6 h-6 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
-          <span>Loading itinerary...</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (!trek) {
+  if (!trekData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -457,7 +535,7 @@ export default function ItineraryPage() {
 
   return (
     <div className="min-h-screen bg-[oklch(0.98_0.01_85)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
         <div className="flex items-center justify-between mb-5 md:mb-6">
           <Button variant="outline" onClick={() => navigate(-1)}>
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -465,12 +543,12 @@ export default function ItineraryPage() {
           </Button>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <MapPin className="h-4 w-4" />
-            {trek.location}
+            {trekData.location}
           </div>
         </div>
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-          <ItineraryHeader trek={trek} />
+          <ItineraryHeader trek={trekData} />
         </motion.div>
 
         <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -481,7 +559,7 @@ export default function ItineraryPage() {
             Book Now
           </Button>
           <div className="text-sm text-muted-foreground sm:ml-2">
-            Difficulty: <span className="font-medium text-foreground">{trek.difficulty}</span>
+            Difficulty: <span className="font-medium text-foreground">{trekData.difficulty}</span>
           </div>
         </div>
 
@@ -491,7 +569,7 @@ export default function ItineraryPage() {
           viewport={{ once: true }}
           className="mt-8"
         >
-          <AboutTrek trek={trek} />
+          <AboutTrek trek={trekData} />
         </motion.div>
 
         <motion.div
@@ -504,7 +582,7 @@ export default function ItineraryPage() {
             useRich={useRich}
             richData={richData as any}
             itinerary={itinerary as any}
-            location={trek.location}
+            location={trekData.location}
           />
         </motion.div>
 
@@ -533,13 +611,13 @@ export default function ItineraryPage() {
           className="mt-10"
         >
           <PriceCard
-            price={trek.price}
+            price={trekData.price}
             onBook={() => setIsBookingOpen(true)}
           />
         </motion.div>
       </div>
 
-      <BookingDialog trek={trek} isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+      <BookingDialog trek={trekData} isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
     </div>
   );
 }

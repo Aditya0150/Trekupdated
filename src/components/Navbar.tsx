@@ -1,18 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState, useRef } from "react";
+import { useNavigate, useLocation } from "react-router";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  // Only show navbar on home page
+  const isHomePage = location.pathname === '/';
 
   // Smooth scroll to section function
   const scrollToSection = (sectionId: string) => {
     const element = document.querySelector(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
@@ -36,13 +42,36 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
+  // Handle navbar visibility on scroll (only on home page)
+  useEffect(() => {
+    if (!isHomePage) return;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsVisible(false); // Hide on scroll down
+      } else {
+        setIsVisible(true); // Show on scroll up
+      }
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHomePage]);
+
+  // Only render navbar on home page
+  if (!isHomePage) return null;
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 bg-transparent transition-transform duration-300 ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-0">
+      <div className="w-full px-4">
         <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Logo - Positioned in absolute corner */}
           <motion.div
@@ -51,14 +80,14 @@ export default function Navbar() {
             onClick={() => navigate("/")}
           >
             <img
-              src="https://harmless-tapir-303.convex.cloud/api/storage/3e4ba243-1be0-424c-a7c9-04f4caccbfef"
+              src="/logo.png"
               alt="Off Beat Himalaya Logo"
-              className="h-20 w-20 lg:h-24 lg:w-24 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+              className="h-24 w-24 lg:h-28 lg:w-28 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
             />
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2 absolute right-4">
             <button
               className="px-4 py-2 rounded-full bg-white/90 text-gray-900 border border-black/10 hover:bg-white shadow-sm transition-colors duration-200"
               onClick={() => scrollToSection('#home')}
@@ -86,7 +115,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden pr-3">
+          <div className="md:hidden absolute right-4">
             <Button
               variant="ghost"
               size="icon"

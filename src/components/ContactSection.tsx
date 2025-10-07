@@ -6,8 +6,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { useState } from "react";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -16,11 +14,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useAction } from "convex/react";
 
 export default function ContactSection() {
-  const createContact = useMutation(api.contacts.createContact);
-  const sendContactEmail = useAction(api.email.sendContactEmail);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -34,27 +29,38 @@ export default function ContactSection() {
     setIsLoading(true);
 
     try {
-      await createContact(formData);
+      // Construct WhatsApp message
+      const whatsappMessage = `New Contact Message
 
-      // Attempt to send email notification to your address
-      try {
-        await sendContactEmail({
-          name: formData.name,
-          email: formData.email,
-          address: formData.address || undefined,
-          message: formData.message,
-          toEmail: "adityanegi281@gmail.com",
-        });
-      } catch (err) {
-        // Don't block the user success if email fails; log and show a gentle notice
-        console.error("Email send failed:", err);
+Name: ${formData.name}
+Email: ${formData.email}
+Address: ${formData.address || 'Not provided'}
+Message: ${formData.message}`;
+
+      // Encode the message for URL
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+
+      // Create WhatsApp URL
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=918126417109&text=${encodedMessage}`;
+
+      // Try to open in new tab first
+      const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+      // If popup was blocked or failed, use direct navigation as fallback
+      if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+        window.location.href = whatsappUrl;
       }
 
       toast.success("Message sent successfully!", {
         description: "We'll get back to you within 24 hours.",
+        style: {
+          color: "black",
+          background: "white",
+
+        },
       });
       setFormData({ name: "", email: "", address: "", message: "" });
-    } catch (error) {
+    } catch {
       toast.error("Failed to send message", {
         description: "Please try again or contact us directly.",
       });

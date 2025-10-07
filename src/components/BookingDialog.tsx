@@ -9,8 +9,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useMutation } from "convex/react";
-import { api } from "@/convex/_generated/api";
 import { Doc } from "@/convex/_generated/dataModel";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -24,7 +22,6 @@ interface BookingDialogProps {
 }
 
 export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogProps) {
-  const createBooking = useMutation(api.bookings.createBooking);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -35,24 +32,47 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
     message: "",
   });
 
-  // Accessible IDs for modal labelling
-  const titleId = `booking-${trek._id}-title`;
-  const descId = `booking-${trek._id}-description`;
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      await createBooking({
-        trekId: trek._id,
-        ...formData,
+      // Construct WhatsApp message
+      const whatsappMessage = `New Booking Request
+
+Trek: ${trek.name}
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Participants: ${formData.participants}
+Preferred Date: ${formData.preferredDate}
+Message: ${formData.message || 'No additional message'}
+
+Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
+
+      // Encode the message for URL
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+
+      // Create WhatsApp URL
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=918126417109&text=${encodedMessage}`;
+
+      // Try to open in new tab first
+      const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      
+      // If popup was blocked or failed, use direct navigation as fallback
+      if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
+        window.location.href = whatsappUrl;
+      }
+
+      toast.success("Redirecting to WhatsApp!", {
+        description: "Your booking details have been prepared.",
+        style: {
+          color: "black",
+          background: "white",
+        },
       });
 
-      toast.success("Booking request submitted successfully!", {
-        description: "We'll contact you soon to confirm your adventure.",
-      });
-
+      // Close dialog and reset form
       onClose();
       setFormData({
         name: "",
@@ -62,8 +82,8 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
         preferredDate: "",
         message: "",
       });
-    } catch (error) {
-      toast.error("Failed to submit booking request", {
+    } catch {
+      toast.error("Failed to prepare booking request", {
         description: "Please try again or contact us directly.",
       });
     } finally {
@@ -77,29 +97,26 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent
-        className="max-w-md max-h-[90vh] overflow-y-auto"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        aria-describedby={descId}
-      >
+      <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto bg-white border-2 border-orange-100 shadow-2xl p-8">
+        <DialogHeader className="pb-8">
+          <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-3">
+            Book Your Adventure
+          </DialogTitle>
+          <DialogDescription className="text-gray-600">
+            Reserve your spot for <span className="font-semibold text-orange-600 bg-orange-50 px-2 py-1 rounded-md">{trek.name}</span>
+          </DialogDescription>
+        </DialogHeader>
+
         <motion.div
           key={isOpen ? "open" : "closed"}
           initial={{ opacity: 0, y: 12, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
-          <DialogHeader>
-            <DialogTitle id={titleId} className="text-xl font-bold">Book Your Adventure</DialogTitle>
-            <DialogDescription id={descId}>
-              Reserve your spot for <span className="font-semibold text-orange-600">{trek.name}</span>
-            </DialogDescription>
-          </DialogHeader>
 
           <motion.form
             onSubmit={handleSubmit}
-            className="space-y-4"
+            className="space-y-8"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25, delay: 0.05, ease: "easeOut" }}

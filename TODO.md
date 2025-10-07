@@ -1,0 +1,5 @@
+- [x] Update image for Valley of Flowers to "/Valley of Flower.png" in seedData.ts
+- [x] Update image for Roopkund Trek to "/Roopkund.jpg" in seedData.ts
+- [x] Update image for Har Ki Dun to "/Har Ki Dun.png" in seedData.ts
+- [x] Update image for Kuari Pass to "/Kuari Pass.png" in seedData.ts
+- [x] Update image for Kedarkantha to "/Kedarkantha.jpg" in seedData.ts
