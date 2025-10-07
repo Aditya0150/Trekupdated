@@ -1,5 +1,5 @@
-import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
 import { motion } from "framer-motion";
+import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
