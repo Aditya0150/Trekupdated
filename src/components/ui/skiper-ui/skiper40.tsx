@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "react-router";
 import React from "react";
 
 import { cn } from "@/lib/utils";
@@ -32,7 +32,7 @@ const Link000 = ({
 }) => {
   return (
     <Link
-      href={href}
+      to={href}
       className={cn(
         "group relative flex items-center",
         className,

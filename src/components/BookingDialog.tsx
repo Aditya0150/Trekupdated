@@ -10,10 +10,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Doc } from "@/convex/_generated/dataModel";
+import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Loader2 } from "lucide-react";
-import { motion } from "framer-motion";
 
 interface BookingDialogProps {
   trek: Doc<"treks">;
@@ -37,6 +37,9 @@ export default function BookingDialog({ trek, isOpen, onClose }: BookingDialogPr
     setIsLoading(true);
 
     try {
+      // Calculate total cost
+      const totalCost = trek.price * formData.participants;
+
       // Construct WhatsApp message
       const whatsappMessage = `New Booking Request
 
@@ -48,17 +51,17 @@ Participants: ${formData.participants}
 Preferred Date: ${formData.preferredDate}
 Message: ${formData.message || 'No additional message'}
 
-Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
+Total Cost: ₹${totalCost.toLocaleString()}`;
 
       // Encode the message for URL
       const encodedMessage = encodeURIComponent(whatsappMessage);
 
-      // Create WhatsApp URL
+      // Create WhatsApp URL (replace with your actual WhatsApp number)
       const whatsappUrl = `https://api.whatsapp.com/send?phone=918126417109&text=${encodedMessage}`;
 
       // Try to open in new tab first
       const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-      
+
       // If popup was blocked or failed, use direct navigation as fallback
       if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
         window.location.href = whatsappUrl;
@@ -72,17 +75,20 @@ Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
         },
       });
 
-      // Close dialog and reset form
-      onClose();
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        participants: 1,
-        preferredDate: "",
-        message: "",
-      });
-    } catch {
+      // Close dialog and reset form after a short delay
+      setTimeout(() => {
+        onClose();
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          participants: 1,
+          preferredDate: "",
+          message: "",
+        });
+      }, 500);
+    } catch (error) {
+      console.error("Booking error:", error);
       toast.error("Failed to prepare booking request", {
         description: "Please try again or contact us directly.",
       });
@@ -94,6 +100,9 @@ Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
   const handleInputChange = (field: string, value: string | number) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+
+  // Get minimum date (today)
+  const today = new Date().toISOString().split('T')[0];
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -113,7 +122,6 @@ Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
-
           <motion.form
             onSubmit={handleSubmit}
             className="space-y-8"
@@ -122,9 +130,11 @@ Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
             transition={{ duration: 0.25, delay: 0.05, ease: "easeOut" }}
             aria-busy={isLoading}
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="name">Full Name *</Label>
+                <Label htmlFor="name" className="text-sm font-medium text-gray-700">
+                  Full Name *
+                </Label>
                 <Input
                   id="name"
                   value={formData.name}
@@ -132,10 +142,14 @@ Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
                   required
                   disabled={isLoading}
                   autoFocus
+                  placeholder="Enter your full name"
+                  className="mt-1"
                 />
               </div>
               <div>
-                <Label htmlFor="email">Email *</Label>
+                <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                  Email *
+                </Label>
                 <Input
                   id="email"
                   type="email"
@@ -143,72 +157,90 @@ Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   required
                   disabled={isLoading}
+                  placeholder="your@email.com"
+                  className="mt-1"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="phone">Phone Number *</Label>
+                <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
+                  Phone Number *
+                </Label>
                 <Input
                   id="phone"
+                  type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
                   required
                   disabled={isLoading}
+                  placeholder="+91 1234567890"
+                  className="mt-1"
                 />
               </div>
               <div>
-                <Label htmlFor="participants">Participants</Label>
+                <Label htmlFor="participants" className="text-sm font-medium text-gray-700">
+                  Participants
+                </Label>
                 <Input
                   id="participants"
                   type="number"
                   min="1"
                   max="10"
                   value={formData.participants}
-                  onChange={(e) => handleInputChange("participants", parseInt(e.target.value))}
+                  onChange={(e) => handleInputChange("participants", parseInt(e.target.value) || 1)}
                   disabled={isLoading}
+                  className="mt-1"
                 />
               </div>
             </div>
 
             <div>
-              <Label htmlFor="preferredDate">Preferred Start Date *</Label>
+              <Label htmlFor="preferredDate" className="text-sm font-medium text-gray-700">
+                Preferred Start Date *
+              </Label>
               <Input
                 id="preferredDate"
                 type="date"
+                min={today}
                 value={formData.preferredDate}
                 onChange={(e) => handleInputChange("preferredDate", e.target.value)}
                 required
                 disabled={isLoading}
+                className="mt-1"
               />
             </div>
 
             <div>
-              <Label htmlFor="message">Additional Message</Label>
+              <Label htmlFor="message" className="text-sm font-medium text-gray-700">
+                Additional Message
+              </Label>
               <Textarea
                 id="message"
                 placeholder="Any special requirements or questions..."
                 value={formData.message}
                 onChange={(e) => handleInputChange("message", e.target.value)}
                 disabled={isLoading}
+                rows={4}
+                className="mt-1 resize-none"
               />
             </div>
 
             <motion.div
-              className="bg-gray-50 p-4 rounded-lg"
+              className="bg-gradient-to-br from-orange-50 to-red-50 p-5 rounded-lg border border-orange-200"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.2, delay: 0.05 }}
             >
-              <div className="flex justify-between items-center">
-                <span className="font-medium">Total Cost:</span>
-                <span className="text-xl font-bold text-orange-600">
-                  ₹{(trek.price * formData.participants).toLocaleString()}
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-semibold text-gray-700">Total Cost:</span>
+                <span className="text-2xl font-bold text-orange-600">
+                  ₹{(trek.price * formData.participants).toLocaleString('en-IN')}
                 </span>
               </div>
-              <p className="text-sm text-gray-600 mt-1">
-                {formData.participants} participant(s) × ₹{trek.price.toLocaleString()}
+              <p className="text-sm text-gray-600">
+                {formData.participants} participant{formData.participants > 1 ? 's' : ''} × ₹{trek.price.toLocaleString('en-IN')}
               </p>
             </motion.div>
 
@@ -223,7 +255,7 @@ Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
                 variant="outline"
                 onClick={onClose}
                 disabled={isLoading}
-                className="flex-1"
+                className="flex-1 hover:bg-gray-100"
               >
                 Cancel
               </Button>
@@ -231,7 +263,7 @@ Total Cost: ₹${(trek.price * formData.participants).toLocaleString()}`;
                 type="submit"
                 disabled={isLoading}
                 aria-busy={isLoading}
-                className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700"
+                className="flex-1 bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 {isLoading ? (
                   <>
