@@ -13,9 +13,10 @@ import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { Trek } from "./TrekCard";
 
 interface BookingDialogProps {
-  trek: any;
+  trek: Trek;
   isOpen: boolean;
   onClose: () => void;
 }

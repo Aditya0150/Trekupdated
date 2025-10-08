@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import BookingDialog from "./BookingDialog";
-import TrekCard from "./TrekCard";
+import TrekCard, { Trek } from "./TrekCard";
 import treksData from "../data/treks.json";
 
 const allTreks = treksData.map((trek, index) => ({
@@ -11,10 +11,10 @@ const allTreks = treksData.map((trek, index) => ({
 }));
 
 export default function TreksSection() {
-  const [selectedTrek, setSelectedTrek] = useState(null);
+  const [selectedTrek, setSelectedTrek] = useState<Trek | null>(null);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  const handleBookTrek = (trek: any) => {
+  const handleBookTrek = (trek: Trek) => {
     setSelectedTrek(trek);
     setIsBookingOpen(true);
   };

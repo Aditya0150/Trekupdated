@@ -6,7 +6,7 @@ import { MapPin, Clock, TrendingUp, Users } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import type { CSSProperties } from "react";
 
-interface Trek {
+export interface Trek {
   _id: string;
   name: string;
   image: string;
@@ -17,6 +17,7 @@ interface Trek {
   altitude: string;
   description: string;
   highlights: string[];
+  _creationTime: number;
 }
 
 interface TrekCardProps {

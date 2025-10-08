@@ -1,7 +1,8 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent } from "@/components/ui/card";
+import { Trek } from "../TrekCard";
 
-export default function AboutTrek({ trek }: { trek: any }) {
+export default function AboutTrek({ trek }: { trek: Trek }) {
   return (
     <Card className="border rounded-2xl bg-[oklch(0.99_0.01_85)]">
       <CardContent className="p-5 md:p-7">
