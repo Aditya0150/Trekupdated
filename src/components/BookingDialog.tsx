@@ -68,7 +68,7 @@ Total Cost: ₹${totalCost.toLocaleString()}`;
       }
 
       toast.success("Redirecting to WhatsApp!", {
-        description: "Your booking details have been prepared.",
+        description: "",
         style: {
           color: "black",
           background: "white",

@@ -52,7 +52,7 @@ Message: ${formData.message}`;
       }
 
       toast.success("Message sent successfully!", {
-        description: "We'll get back to you within 24 hours.",
+        description: "",
         style: {
           color: "black",
           background: "white",
@@ -62,7 +62,7 @@ Message: ${formData.message}`;
       setFormData({ name: "", email: "", address: "", message: "" });
     } catch {
       toast.error("Failed to send message", {
-        description: "Please try again or contact us directly.",
+        description: "",
       });
     } finally {
       setIsLoading(false);
