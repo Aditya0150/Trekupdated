@@ -1,31 +1,101 @@
 [
   {
-    "trekName": "Valley of Flowers",
+    "trekName": "Auli and Niti Winter Expedition",
+    "days": [
+      {
+        "dayNumber": 1,
+        "title": "Rishikesh to Auli",
+        "description": "Scenic drive through Panch Prayag. Visit Dhari Devi Temple. Arrive at Auli by evening."
+      },
+      {
+        "dayNumber": 2,
+        "title": "Auli Exploration & Winter Acclimatisation",
+        "description": "Hike to Gorson for panoramic views. Witness majestic Nanda Devi and peaks. Winter acclimatisation activities."
+      },
+      {
+        "dayNumber": 3,
+        "title": "Auli to Niti Valley Exploration",
+        "description": "Explore Malari, Sumna, and Tapovan. Spot Himalayan wildlife (Thar, Blue sheep, Snow leopard). Visit Sumna viewpoint and frozen landscapes."
+      },
+      {
+        "dayNumber": 4,
+        "title": "Niti Village Exploration",
+        "description": "Visit frozen Niti Mahadev temple. Hike to Payaar for valley views. Experience Bhotiya culture."
+      },
+      {
+        "dayNumber": 5,
+        "title": "Niti to Rishikesh",
+        "description": "Return drive through scenic routes. Memories of winter wonderland."
+      }
+    ]
+  },
+  {
+    "trekName": "Kuari Pass",
     "days": [
       {
         "dayNumber": 1,
         "title": "Rishikesh to Joshimath",
-        "description": "Will cover Panch Prayag and Dhari Devi Temple. It will be 7-8 Hr Drive."
+        "description": "Drive along Alaknanda river. Stay in hotel/guesthouse."
       },
       {
         "dayNumber": 2,
-        "title": "Joshimath → Poolna → Ghangaria",
-        "description": "Trek through forest & river paths. Reach basecamp at Ghangaria."
+        "title": "Joshimath to Dhak → Gulling",
+        "description": "Oak forests and village trails. First views of Dronagiri peak."
       },
       {
         "dayNumber": 3,
-        "title": "Valley of Flowers Exploration",
-        "description": "Wildflower meadows in full bloom. Rare Himalayan flora and fauna. Breathtaking mountain views."
+        "title": "Gulling to Tali Forest Camp",
+        "description": "Walk through dense mixed forests. Camp surrounded by alpine trees."
       },
       {
         "dayNumber": 4,
-        "title": "Ghangaria → Poolna → Joshimath",
-        "description": "Return to base, overnight stay."
+        "title": "Tali → Kuari Pass Summit → Tali",
+        "description": "Summit Kuari Pass (12,516 ft). Stunning view of Himalayan giants."
       },
       {
         "dayNumber": 5,
+        "title": "Tali to Joshimath via Dhak",
+        "description": "Final descent to base village. Drive back to Joshimath."
+      },
+      {
+        "dayNumber": 6,
         "title": "Joshimath to Rishikesh",
-        "description": "Return drive to Rishikesh. Memories of an unforgettable Himalayan trek."
+        "description": "Trip concludes with cherished mountain moments."
+      }
+    ]
+  },
+  {
+    "trekName": "Kedarkantha",
+    "days": [
+      {
+        "dayNumber": 1,
+        "title": "Dehradun to Sankri",
+        "description": "Drive through scenic Himalayan terrain. Reach Sankri by evening."
+      },
+      {
+        "dayNumber": 2,
+        "title": "Sankri to Juda Ka Talab",
+        "description": "Snowy pine forests and frozen lake. Overnight camp under the stars."
+      },
+      {
+        "dayNumber": 3,
+        "title": "Juda Ka Talab to Kedarkantha Base",
+        "description": "Snowy trails and open meadows. Spectacular views of Swargarohini."
+      },
+      {
+        "dayNumber": 4,
+        "title": "Kedarkantha Summit → Base → Sankri",
+        "description": "Early morning summit climb. 360° Himalayan views from top. Descend back to Sankri."
+      },
+      {
+        "dayNumber": 5,
+        "title": "Buffer/Contingency Day",
+        "description": "Extra day to accommodate delays or snowfall. Used only if required."
+      },
+      {
+        "dayNumber": 6,
+        "title": "Sankri to Dehradun",
+        "description": "Drive back to Dehradun with unforgettable memories."
       }
     ]
   },
@@ -115,102 +185,32 @@
     ]
   },
   {
-    "trekName": "Kuari Pass",
+    "trekName": "Valley of Flowers",
     "days": [
       {
         "dayNumber": 1,
         "title": "Rishikesh to Joshimath",
-        "description": "Drive along Alaknanda river. Stay in hotel/guesthouse."
+        "description": "Will cover Panch Prayag and Dhari Devi Temple. It will be 7-8 Hr Drive."
       },
       {
         "dayNumber": 2,
-        "title": "Joshimath to Dhak → Gulling",
-        "description": "Oak forests and village trails. First views of Dronagiri peak."
+        "title": "Joshimath → Poolna → Ghangaria",
+        "description": "Trek through forest & river paths. Reach basecamp at Ghangaria."
       },
       {
         "dayNumber": 3,
-        "title": "Gulling to Tali Forest Camp",
-        "description": "Walk through dense mixed forests. Camp surrounded by alpine trees."
+        "title": "Valley of Flowers Exploration",
+        "description": "Wildflower meadows in full bloom. Rare Himalayan flora and fauna. Breathtaking mountain views."
       },
       {
         "dayNumber": 4,
-        "title": "Tali → Kuari Pass Summit → Tali",
-        "description": "Summit Kuari Pass (12,516 ft). Stunning view of Himalayan giants."
+        "title": "Ghangaria → Poolna → Joshimath",
+        "description": "Return to base, overnight stay."
       },
       {
         "dayNumber": 5,
-        "title": "Tali to Joshimath via Dhak",
-        "description": "Final descent to base village. Drive back to Joshimath."
-      },
-      {
-        "dayNumber": 6,
         "title": "Joshimath to Rishikesh",
-        "description": "Trip concludes with cherished mountain moments."
-      }
-    ]
-  },
-  {
-    "trekName": "Auli and Niti Winter Expedition",
-    "days": [
-      {
-        "dayNumber": 1,
-        "title": "Rishikesh to Auli",
-        "description": "Scenic drive through Panch Prayag. Visit Dhari Devi Temple. Arrive at Auli by evening."
-      },
-      {
-        "dayNumber": 2,
-        "title": "Auli Exploration & Winter Acclimatisation",
-        "description": "Hike to Gorson for panoramic views. Witness majestic Nanda Devi and peaks. Winter acclimatisation activities."
-      },
-      {
-        "dayNumber": 3,
-        "title": "Auli to Niti Valley Exploration",
-        "description": "Explore Malari, Sumna, and Tapovan. Spot Himalayan wildlife (Thar, Blue sheep, Snow leopard). Visit Sumna viewpoint and frozen landscapes."
-      },
-      {
-        "dayNumber": 4,
-        "title": "Niti Village Exploration",
-        "description": "Visit frozen Niti Mahadev temple. Hike to Payaar for valley views. Experience Bhotiya culture."
-      },
-      {
-        "dayNumber": 5,
-        "title": "Niti to Rishikesh",
-        "description": "Return drive through scenic routes. Memories of winter wonderland."
-      }
-    ]
-  },
-  {
-    "trekName": "Kedarkantha",
-    "days": [
-      {
-        "dayNumber": 1,
-        "title": "Dehradun to Sankri",
-        "description": "Drive through scenic Himalayan terrain. Reach Sankri by evening."
-      },
-      {
-        "dayNumber": 2,
-        "title": "Sankri to Juda Ka Talab",
-        "description": "Snowy pine forests and frozen lake. Overnight camp under the stars."
-      },
-      {
-        "dayNumber": 3,
-        "title": "Juda Ka Talab to Kedarkantha Base",
-        "description": "Snowy trails and open meadows. Spectacular views of Swargarohini."
-      },
-      {
-        "dayNumber": 4,
-        "title": "Kedarkantha Summit → Base → Sankri",
-        "description": "Early morning summit climb. 360° Himalayan views from top. Descend back to Sankri."
-      },
-      {
-        "dayNumber": 5,
-        "title": "Buffer/Contingency Day",
-        "description": "Extra day to accommodate delays or snowfall. Used only if required."
-      },
-      {
-        "dayNumber": 6,
-        "title": "Sankri to Dehradun",
-        "description": "Drive back to Dehradun with unforgettable memories."
+        "description": "Return drive to Rishikesh. Memories of an unforgettable Himalayan trek."
       }
     ]
   }
