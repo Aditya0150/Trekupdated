@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Instagram, MessageCircle, Phone, Mail, MapPin } from "lucide-react";
+import { Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -27,8 +27,8 @@ export default function Footer() {
     {
       icon: Mail,
       label: "Email",
-      value: "info@himalayan-adventures.com",
-      href: "mailto:info@himalayan-adventures.com",
+      value: "Offbeathimalayaindia@gmail.com",
+      href: "mailto:Offbeathimalayaindia@gmail.com",
     },
     {
       icon: MapPin,
