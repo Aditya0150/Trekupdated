@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Doc, Id } from "@/convex/_generated/dataModel";
 import { motion } from "framer-motion";
 import { ArrowLeft, MapPin, Route, Clock, Home, TreePine, Mountain } from "lucide-react";
 import { useNavigate, useParams } from "react-router";
@@ -14,9 +13,9 @@ import PriceCard from "@/components/itinerary/PriceCard";
 import treksData from "../data/treks.json";
 import itinerariesData from "../data/itineraries.json";
 
-const allTreks: Doc<"treks">[] = treksData.map((trek, index) => ({
+const allTreks = treksData.map((trek, index) => ({
   ...trek,
-  _id: `trek-${index}` as any,
+  _id: `trek-${index}`,
   _creationTime: Date.now() + index,
 }));
 

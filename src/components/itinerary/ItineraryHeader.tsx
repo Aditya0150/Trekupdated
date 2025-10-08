@@ -1,8 +1,7 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Mountain, Calendar, IndianRupee } from "lucide-react";
-import type { Doc } from "@/convex/_generated/dataModel";
 
-export default function ItineraryHeader({ trek }: { trek: Doc<"treks"> }) {
+export default function ItineraryHeader({ trek }: { trek: any }) {
   return (
     <div className="relative overflow-hidden rounded-2xl border bg-white">
       <AspectRatio ratio={16 / 9} className="relative">

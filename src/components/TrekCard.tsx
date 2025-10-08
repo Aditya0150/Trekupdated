@@ -3,13 +3,12 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { MapPin, Clock, TrendingUp, Users } from "lucide-react";
-import { Doc } from "@/convex/_generated/dataModel";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import type { CSSProperties } from "react";
 
 interface TrekCardProps {
-  trek: Doc<"treks">;
-  onBook: (trek: Doc<"treks">) => void;
+  trek: any;
+  onBook: (trek: any) => void;
   className?: string;
   style?: CSSProperties;
 }

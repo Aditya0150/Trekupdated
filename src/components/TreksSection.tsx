@@ -1,22 +1,20 @@
-import { Doc } from "@/convex/_generated/dataModel";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import BookingDialog from "./BookingDialog";
-import StickyTrekStack from "./StickyTrekStack";
 import TrekCard from "./TrekCard";
 import treksData from "../data/treks.json";
 
-const allTreks: Doc<"treks">[] = treksData.map((trek, index) => ({
+const allTreks = treksData.map((trek, index) => ({
   ...trek,
-  _id: `trek-${index}` as any,
+  _id: `trek-${index}`,
   _creationTime: Date.now() + index,
 }));
 
 export default function TreksSection() {
-  const [selectedTrek, setSelectedTrek] = useState<Doc<"treks"> | null>(null);
+  const [selectedTrek, setSelectedTrek] = useState(null);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  const handleBookTrek = (trek: Doc<"treks">) => {
+  const handleBookTrek = (trek: any) => {
     setSelectedTrek(trek);
     setIsBookingOpen(true);
   };
@@ -39,13 +37,8 @@ export default function TreksSection() {
           </p>
         </motion.div>
 
-        {/* Desktop: Stacked scroll cards */}
-        <div className="hidden md:block">
-          <StickyTrekStack treks={allTreks} onBook={handleBookTrek} />
-        </div>
-
-        {/* Mobile: Original grid layout */}
-        <div className="grid md:hidden grid-cols-1 gap-6 place-items-center [grid-auto-rows:1fr]">
+        {/* Grid layout for all screen sizes */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center [grid-auto-rows:1fr]">
           {allTreks.map((trek, index) => (
             <motion.div
               key={trek._id}

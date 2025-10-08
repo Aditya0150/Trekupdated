@@ -9,14 +9,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Doc } from "@/convex/_generated/dataModel";
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
 interface BookingDialogProps {
-  trek: Doc<"treks">;
+  trek: any;
   isOpen: boolean;
   onClose: () => void;
 }
