@@ -6,9 +6,22 @@ import { MapPin, Clock, TrendingUp, Users } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import type { CSSProperties } from "react";
 
+interface Trek {
+  _id: string;
+  name: string;
+  image: string;
+  difficulty: string;
+  price: number;
+  location: string;
+  duration: string;
+  altitude: string;
+  description: string;
+  highlights: string[];
+}
+
 interface TrekCardProps {
-  trek: any;
-  onBook: (trek: any) => void;
+  trek: Trek;
+  onBook: (trek: Trek) => void;
   className?: string;
   style?: CSSProperties;
 }
@@ -81,7 +94,7 @@ export default function TrekCard({ trek, onBook, className, style }: TrekCardPro
           </p>
 
           <div className="flex flex-wrap gap-1.5 mb-4">
-            {trek.highlights.slice(0, 2).map((highlight, index) => (
+            {trek.highlights.slice(0, 2).map((highlight: string, index: number) => (
               <Badge key={index} variant="outline" className="text-xs">
                 {highlight}
               </Badge>
