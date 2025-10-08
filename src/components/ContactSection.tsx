@@ -83,8 +83,8 @@ Message: ${formData.message}`;
     {
       icon: Mail,
       label: "Email",
-      value: "info@himalayan-adventures.com",
-      href: "mailto:info@himalayan-adventures.com",
+      value: "Offbeathimalayaindia@gmail.com",
+      href: "mailto:Offbeathimalayaindia@gmail.com",
     },
     {
       icon: MapPin,
